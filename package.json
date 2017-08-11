@@ -1,0 +1,67 @@
+{
+  "name": "unibeautify",
+  "displayName": "Unibeautify",
+  "version": "0.1.0",
+  "description": "Unibeautify for VSCode",
+  "main": "index.js",
+  "activationEvents": [
+    "*"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "postinstall": "node ./node_modules/vscode/bin/install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Unibeautify/vscode.git"
+  },
+  "keywords": [
+    "beautify",
+    "formatter",
+    "pretty",
+    "unibeautify"
+  ],
+  "author": "Glavin Wiechert",
+  "publisher": "Unibeautify",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Unibeautify/vscode/issues"
+  },
+  "homepage": "https://github.com/Unibeautify/vscode#readme",
+  "contributes": {
+    "commands": [
+      {
+        "title": "Beautify File",
+        "command": "Unibeautify.beautifyFile"
+      },
+      {
+        "title": "Beautify Selection",
+        "command": "Unibeautify.beautifySelection"
+      }
+    ]
+  },
+  "engines": {
+    "vscode": "^1.6.0"
+  },
+  "devDependencies": {
+    "@types/bluebird": "^3.5.8",
+    "@types/diff": "^3.2.0",
+    "@types/json-stable-stringify": "^1.0.31",
+    "@types/lodash": "^4.14.71",
+    "@types/node": "^8.0.19",
+    "ava": "^0.16.0",
+    "json-stable-stringify": "^1.0.1",
+    "npm-run-all": "^3.0.0",
+    "rimraf": "^2.5.4",
+    "tslint": "3.15.0-dev.0",
+    "typedoc": "^0.4.5",
+    "typescript": "^2.4.2",
+    "vscode": "^1.1.4"
+  },
+  "dependencies": {
+    "diff": "^3.3.0",
+    "unibeautify": "0.1.6"
+  }
+}
