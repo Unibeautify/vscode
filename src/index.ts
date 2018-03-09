@@ -4,15 +4,22 @@ import { EditProvider } from "./EditProvider";
 import unibeautify from "unibeautify";
 import { beautifiers } from "./beautifiers";
 
-// let extension: Extension | undefined;
 export function activate(context: vscode.ExtensionContext) {
-    // extension = new Extension(context);
-    // extension.activate();
-
     unibeautify.loadBeautifiers(beautifiers);
-
+    const { supportedLanguages } = unibeautify;
+    const languageFilters: vscode.DocumentFilter[] = supportedLanguages.reduce((filters, { vscodeLanguages }) => {
+        const languages: vscode.DocumentFilter[] = vscodeLanguages.map(language => ({ language }));
+        return [...filters, ...languages];
+    }, [] as vscode.DocumentFilter[]);
+    const patternFilters: vscode.DocumentFilter[] = supportedLanguages.map(language => ({
+        pattern: `**/*.{${language.extensions.join(',')}}`
+    }));
+    const documentSelector: vscode.DocumentSelector = [
+        ...languageFilters,
+        ...patternFilters,
+    ];
+    console.log("Unibeautify documentSelector", documentSelector);
     const editProvider = new EditProvider();
-    const documentSelector: vscode.DocumentSelector = [ "javascript" ];
     context.subscriptions.push(
         vscode.languages.registerDocumentFormattingEditProvider(documentSelector, editProvider),
         vscode.languages.registerDocumentRangeFormattingEditProvider(documentSelector, editProvider),
@@ -20,6 +27,4 @@ export function activate(context: vscode.ExtensionContext) {
 };
 
 export function deactivate() {
-    // extension && extension.deactivate();
-    // extension = undefined;
 };

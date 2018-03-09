@@ -1,14 +1,28 @@
 import * as vscode from "vscode";
 import unibeautify, {
-    LanguageOptionValues
+    LanguageOptionValues,
+    BeautifyData,
 } from "unibeautify";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
+import { extname } from "path";
 
 export class EditProvider
     implements vscode.DocumentRangeFormattingEditProvider,
     vscode.DocumentFormattingEditProvider {
 
-    provideDocumentRangeFormattingEdits(
+    public provideDocumentFormattingEdits(
+        document: vscode.TextDocument,
+        options: vscode.FormattingOptions,
+        token: vscode.CancellationToken
+    ): PromiseLike<vscode.TextEdit[]> {
+        return this.provideDocumentRangeFormattingEdits(document, this.fullRange(document), options, token);
+    }
+
+    private fullRange(document: vscode.TextDocument): vscode.Range {
+        return document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE));
+    }
+
+    public provideDocumentRangeFormattingEdits(
         document: vscode.TextDocument,
         range: vscode.Range,
         options: vscode.FormattingOptions,
@@ -17,40 +31,39 @@ export class EditProvider
         console.log("FormattingOptions", options);
         const text: string = document.getText(range);
         const beautifyOptions: LanguageOptionValues = {};
-        const languageName = "JavaScript";
-        return unibeautify.beautify({
+        const languageName = this.languageForDocument(document);
+        const fileExtension = this.fileExtensionForDocument(document);
+        const filePath = document.fileName;
+        const projectPath = vscode.workspace.rootPath;
+        const beautifyData: BeautifyData = {
             languageName,
+            fileExtension,
+            filePath,
+            projectPath,
             options: beautifyOptions,
             text,
-        })
-            .then((newText: string) => {
-                console.log("oldText:", text);
-                console.log("newText:", newText);
-                return getTextEdits(text, newText);
-            })
-            .then((textEdits) => {
-                console.log("range:", range);
-                console.log("textEdits1:", textEdits);
-                textEdits = translateTextEdits(textEdits, range);
-                console.log("textEdits2:", textEdits);
-                return textEdits;
-            })
+        };
+        console.log("beautifyData", beautifyData);
+        return unibeautify.beautify(beautifyData)
+            .then((newText: string) => getTextEdits(text, newText))
+            .then(textEdits => translateTextEdits(textEdits, range))
             .catch(error => {
                 console.error(error);
                 return Promise.reject(error);
             })
             ;
     }
-    provideDocumentFormattingEdits(
-        document: vscode.TextDocument,
-        options: vscode.FormattingOptions,
-        token: vscode.CancellationToken
-    ): PromiseLike<vscode.TextEdit[]> {
-        return this.provideDocumentRangeFormattingEdits(document, this.fullRange(document), options, token);
+
+    private languageForDocument(document: vscode.TextDocument): string {
+        return document.languageId;
     }
 
-    fullRange(document: vscode.TextDocument): vscode.Range {
-        return document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE));
+    private fileExtensionForDocument(document: vscode.TextDocument): string {
+        const { fileName } = document;
+        if (fileName) {
+            return extname(fileName).slice(1);
+        }
+        return undefined;
     }
 
 }

@@ -45,6 +45,5 @@ export class Editor {
     get fullRange(): vscode.Range {
         return this.document.validateRange(new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE));
     }
-    // vscode.workspace.onDidSaveTextDocument((document: vscode.TextDocument) => {
 
 }
