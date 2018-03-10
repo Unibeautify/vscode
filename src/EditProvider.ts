@@ -2,14 +2,13 @@ import * as vscode from "vscode";
 import unibeautify, {
   LanguageOptionValues,
   BeautifyData,
-  Language
+  Language,
 } from "unibeautify";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
 
 export class EditProvider
-  implements
-    vscode.DocumentRangeFormattingEditProvider,
+  implements vscode.DocumentRangeFormattingEditProvider,
     vscode.DocumentFormattingEditProvider {
   public provideDocumentFormattingEdits(
     document: vscode.TextDocument,
@@ -49,7 +48,7 @@ export class EditProvider
       filePath,
       projectPath,
       options: beautifyOptions,
-      text
+      text,
     };
     console.log("beautifyData", beautifyData);
     return unibeautify
@@ -73,9 +72,7 @@ export class EditProvider
   }
 
   private languagesForDocument(document: vscode.TextDocument): Language[] {
-    return unibeautify.findLanguages({
-      vscodeLanguage: document.languageId
-    });
+    return unibeautify.findLanguages({ vscodeLanguage: document.languageId });
   }
 
   private fileExtensionForDocument(document: vscode.TextDocument): string {

@@ -19,11 +19,11 @@ export function activate(context: vscode.ExtensionContext) {
   const patternFilters: vscode.DocumentFilter[] = supportedLanguages
     .filter(language => language.extensions.length > 0)
     .map(language => ({
-      pattern: `**/*{${language.extensions.join(",")}}`
+      pattern: `**/*{${language.extensions.join(",")}}`,
     }));
   const documentSelector: vscode.DocumentSelector = [
     ...languageFilters,
-    ...patternFilters
+    ...patternFilters,
   ];
   console.log("Unibeautify documentSelector", documentSelector);
   const editProvider = new EditProvider();
