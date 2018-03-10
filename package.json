@@ -1,5 +1,5 @@
 {
-  "name": "unibeautify",
+  "name": "unibeautify-vscode",
   "displayName": "Unibeautify",
   "version": "0.1.0",
   "description": "Unibeautify for VSCode",
@@ -61,7 +61,9 @@
     "vscode": "^1.1.4"
   },
   "dependencies": {
+    "@unibeautify/beautifier-prettier": "^0.7.3",
     "diff": "^3.3.0",
-    "unibeautify": "0.1.6"
+    "prettier": "^1.11.1",
+    "unibeautify": "^0.10.0"
   }
 }

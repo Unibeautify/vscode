@@ -1,5 +1,6 @@
 import { Beautifier } from "unibeautify";
-const PrettyDiff: Beautifier = require("beautifier-prettydiff");
+import Prettier from "@unibeautify/beautifier-prettier";
+// const PrettyDiff: Beautifier = require("beautifier-prettydiff");
 
 // const CustomBeautifier: Beautifier = {
 //     name: "Test",
@@ -31,6 +32,7 @@ const PrettyDiff: Beautifier = require("beautifier-prettydiff");
 // };
 
 export const beautifiers: Beautifier[] = [
-    PrettyDiff,
-    // CustomBeautifier
+  Prettier
+  // PrettyDiff,
+  // CustomBeautifier
 ];

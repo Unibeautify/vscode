@@ -32,6 +32,7 @@
             }
         },
         {
+            "taskName": "build-watch",
             "type": "npm",
             "script": "dev"
         }        
