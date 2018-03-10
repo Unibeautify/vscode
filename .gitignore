@@ -1,5 +1,7 @@
+.vscode-test/
+
 # Project
-dist/
+out/
 
 # Logs
 logs

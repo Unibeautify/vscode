@@ -10,12 +10,13 @@
             "request": "launch",
             "runtimeExecutable": "${execPath}",
             "args": [
-                "--extensionDevelopmentPath=${workspaceRoot}"
+                "--extensionDevelopmentPath=${workspaceRoot}",
+                "${workspaceFolder}/testProject"
             ],
             "stopOnEntry": false,
             "sourceMaps": true,
             "outFiles": [
-                "dist"
+                "out"
             ],
             "preLaunchTask": "build"
         },

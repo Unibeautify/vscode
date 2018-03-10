@@ -8,10 +8,11 @@
         "target": "ES6",
         "declaration": true,
         "moduleResolution": "node",
-        "outDir": "./dist/"
+        "rootDir": ".",
+        "outDir": "out"
     },
     "exclude": [
         "node_modules",
-        "./dist/"
+        "./out/"
     ]
 }
