@@ -2,6 +2,8 @@
 
 > [Unibeautify](https://unibeautify.com/) for [Visual Studio Code](https://code.visualstudio.com/)
 
+![demo](https://user-images.githubusercontent.com/1885333/37237670-0f06fcde-23ed-11e8-9200-4d2089323fe1.gif)
+
 ## Install
 
 ```bash
