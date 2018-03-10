@@ -1,3 +1,8 @@
+.vscode-test/
+
+# Project
+out/
+
 # Logs
 logs
 *.log
