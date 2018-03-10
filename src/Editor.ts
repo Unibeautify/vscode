@@ -3,10 +3,6 @@ import * as vscode from "vscode";
 export class Editor {
   constructor(private textEditor: vscode.TextEditor) {}
 
-  // const editor = this.activeTextEditor; if (!editor) return; const doc =
-  // editor.document; if (!doc) return; const text: string = doc.getText(); const
-  // range = doc.
-
   static get activeTextEditor(): Editor | undefined {
     const textEditor = vscode.window.activeTextEditor;
     return textEditor ? new Editor(textEditor) : undefined;
