@@ -21,3 +21,4 @@ install:
 
 script:
   - npm test --silent
+  - npm list --production --parseable --depth=99999 # Check if can publish VSCode extension
