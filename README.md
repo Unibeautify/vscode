@@ -1,6 +1,7 @@
-# Unibeautify-VSCode
+# Unibeautify for VSCode
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Unibeautify/vscode.svg)](https://greenkeeper.io/)
+[![Build Status](https://travis-ci.org/Unibeautify/vscode.svg?branch=master)](https://travis-ci.org/Unibeautify/vscode)
 
 > [Unibeautify](https://unibeautify.com/) for [Visual Studio Code](https://code.visualstudio.com/)
 
@@ -8,9 +9,27 @@
 
 ## Install
 
-```bash
-ext install unibeautify-vscode
-```
+Search for `Unibeautify` extension and click `Install`.
+See [Install an extension](https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension) for more details.
+
+## Usage
+
+### Keyboard Shortcut
+
+From [Stack Overflow](https://stackoverflow.com/a/29973358/2578205):
+
+- Windows: <kbd>Shift</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd>
+- Mac: <kbd>Shift</kbd> + <kbd>Option</kbd> + <kbd>F</kbd>
+- Ubuntu: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
+
+### Command Palette
+
+Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) (<kbd>Ctrl</kbd> +<kbd>Shift</kbd>+ <kbd>P</kbd> or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on Mac) and search for `format`:
+
+![format](https://user-images.githubusercontent.com/1885333/37503575-f6c0092a-28b7-11e8-9bf6-6573d3eab76c.png)
+
+- `Format Document` - Formats the entire editor document.
+- `Format Selection` - Formats only the selection. Only appears when text selected.
 
 ## Contribute
 

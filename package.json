@@ -1,9 +1,15 @@
 {
   "name": "unibeautify-vscode",
-  "displayName": "Unibeautify",
+  "displayName": "Unibeautify - Universal Formatter",
   "version": "0.1.0",
-  "description": "Unibeautify for VSCode",
+  "description": "Unibeautify (Universal Code Formatter) for Visual Studio Code",
+  "preview": true,
   "main": "index.js",
+  "icon": "images/icon.png",
+  "galleryBanner": {
+    "color": "#ffe04b",
+    "theme": "light"
+  },
   "activationEvents": [
     "*"
   ],
@@ -17,16 +23,27 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Unibeautify/vscode.git"
+    "url": "https://github.com/Unibeautify/vscode.git"
   },
   "keywords": [
     "beautify",
+    "beautifier",
+    "format",
+    "format code",
     "formatter",
+    "code formatter",
     "pretty",
+    "prettify",
     "unibeautify"
   ],
-  "author": "Glavin Wiechert",
-  "publisher": "Unibeautify",
+  "categories": [
+    "Formatters"
+  ],
+  "author": {
+    "name": "Glavin Wiechert",
+    "email": "glavin.wiechert@gmail.com"
+  },
+  "publisher": "Glavin001",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Unibeautify/vscode/issues"
@@ -44,6 +61,18 @@
       }
     ]
   },
+  "badges": [
+    {
+      "url": "https://badges.greenkeeper.io/Unibeautify/vscode.svg",
+      "href": "https://greenkeeper.io/",
+      "description": "Greenkeeper"
+    },
+    {
+      "url": "https://travis-ci.org/Unibeautify/vscode.svg?branch=master",
+      "href": "https://travis-ci.org/Unibeautify/vscode",
+      "description": "Continuous integration (Travis)"
+    }
+  ],
   "engines": {
     "vscode": "^1.6.0"
   },
