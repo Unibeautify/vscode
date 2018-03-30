@@ -1,102 +1,102 @@
 {
-  "name": "unibeautify-vscode",
-  "displayName": "Unibeautify - Universal Formatter",
-  "version": "0.1.0",
-  "description": "Unibeautify (Universal Code Formatter) for Visual Studio Code",
-  "preview": true,
-  "main": "index.js",
-  "icon": "images/icon.png",
-  "galleryBanner": {
-    "color": "#ffe04b",
-    "theme": "light"
-  },
-  "activationEvents": [
-    "*"
-  ],
-  "scripts": {
-    "vscode:prepublish": "npm run build",
-    "test": "cross-env CODE_TESTS_WORKSPACE=testProject node ./node_modules/vscode/bin/test",
-    "build": "npm run clean && tsc",
-    "dev": "npm run clean && tsc --watch",
-    "clean": "rimraf dist/",
-    "postinstall": "node ./node_modules/vscode/bin/install"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Unibeautify/vscode.git"
-  },
-  "keywords": [
-    "beautify",
-    "beautifier",
-    "format",
-    "format code",
-    "formatter",
-    "code formatter",
-    "pretty",
-    "prettify",
-    "unibeautify"
-  ],
-  "categories": [
-    "Formatters"
-  ],
-  "author": {
-    "name": "Glavin Wiechert",
-    "email": "glavin.wiechert@gmail.com"
-  },
-  "publisher": "Glavin001",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/Unibeautify/vscode/issues"
-  },
-  "homepage": "https://github.com/Unibeautify/vscode#readme",
-  "contributes": {
-    "commands": [
-      {
-        "title": "Beautify File",
-        "command": "Unibeautify.beautifyFile"
-      },
-      {
-        "title": "Beautify Selection",
-        "command": "Unibeautify.beautifySelection"
-      }
-    ]
-  },
-  "badges": [
-    {
-      "url": "https://badges.greenkeeper.io/Unibeautify/vscode.svg",
-      "href": "https://greenkeeper.io/",
-      "description": "Greenkeeper"
+    "name": "unibeautify-vscode",
+    "displayName": "Unibeautify - Universal Formatter",
+    "version": "0.1.1",
+    "description": "Unibeautify (Universal Code Formatter) for Visual Studio Code",
+    "preview": true,
+    "main": "index.js",
+    "icon": "images/icon.png",
+    "galleryBanner": {
+        "color": "#ffe04b",
+        "theme": "light"
     },
-    {
-      "url": "https://travis-ci.org/Unibeautify/vscode.svg?branch=master",
-      "href": "https://travis-ci.org/Unibeautify/vscode",
-      "description": "Continuous integration (Travis)"
+    "activationEvents": [
+        "*"
+    ],
+    "scripts": {
+        "vscode:prepublish": "npm run build",
+        "test": "cross-env CODE_TESTS_WORKSPACE=testProject node ./node_modules/vscode/bin/test",
+        "build": "npm run clean && tsc",
+        "dev": "npm run clean && tsc --watch",
+        "clean": "rimraf dist/",
+        "postinstall": "node ./node_modules/vscode/bin/install"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Unibeautify/vscode.git"
+    },
+    "keywords": [
+        "beautify",
+        "beautifier",
+        "format",
+        "format code",
+        "formatter",
+        "code formatter",
+        "pretty",
+        "prettify",
+        "unibeautify"
+    ],
+    "categories": [
+        "Formatters"
+    ],
+    "author": {
+        "name": "Glavin Wiechert",
+        "email": "glavin.wiechert@gmail.com"
+    },
+    "publisher": "Glavin001",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Unibeautify/vscode/issues"
+    },
+    "homepage": "https://github.com/Unibeautify/vscode#readme",
+    "contributes": {
+        "commands": [
+            {
+                "title": "Beautify File",
+                "command": "Unibeautify.beautifyFile"
+            },
+            {
+                "title": "Beautify Selection",
+                "command": "Unibeautify.beautifySelection"
+            }
+        ]
+    },
+    "badges": [
+        {
+            "url": "https://badges.greenkeeper.io/Unibeautify/vscode.svg",
+            "href": "https://greenkeeper.io/",
+            "description": "Greenkeeper"
+        },
+        {
+            "url": "https://travis-ci.org/Unibeautify/vscode.svg?branch=master",
+            "href": "https://travis-ci.org/Unibeautify/vscode",
+            "description": "Continuous integration (Travis)"
+        }
+    ],
+    "engines": {
+        "vscode": "^1.6.0"
+    },
+    "devDependencies": {
+        "@types/diff": "^3.2.0",
+        "@types/lodash": "^4.14.71",
+        "@types/mocha": "^2.2.48",
+        "@types/node": "^9.4.7",
+        "cross-env": "^5.1.4",
+        "mocha": "^5.0.4",
+        "rimraf": "^2.5.4",
+        "typescript": "^2.4.2",
+        "vscode": "^1.1.4"
+    },
+    "dependencies": {
+        "@unibeautify/beautifier-eslint": "^0.4.1",
+        "@unibeautify/beautifier-js-beautify": "^0.3.2",
+        "@unibeautify/beautifier-prettier": "^0.7.5",
+        "@unibeautify/beautifier-prettydiff": "^0.5.3",
+        "diff": "^3.3.0",
+        "eslint": "^4.18.2",
+        "js-beautify": "^1.7.5",
+        "prettier": "^1.11.1",
+        "prettydiff2": "^2.2.7",
+        "unibeautify": "^0.10.1"
     }
-  ],
-  "engines": {
-    "vscode": "^1.6.0"
-  },
-  "devDependencies": {
-    "@types/diff": "^3.2.0",
-    "@types/lodash": "^4.14.71",
-    "@types/mocha": "^2.2.48",
-    "@types/node": "^9.4.7",
-    "cross-env": "^5.1.4",
-    "mocha": "^5.0.4",
-    "rimraf": "^2.5.4",
-    "typescript": "^2.4.2",
-    "vscode": "^1.1.4"
-  },
-  "dependencies": {
-    "@unibeautify/beautifier-eslint": "^0.4.1",
-    "@unibeautify/beautifier-js-beautify": "^0.3.2",
-    "@unibeautify/beautifier-prettier": "^0.7.5",
-    "@unibeautify/beautifier-prettydiff": "^0.5.3",
-    "diff": "^3.3.0",
-    "eslint": "^4.18.2",
-    "js-beautify": "^1.7.5",
-    "prettier": "^1.11.1",
-    "prettydiff2": "^2.2.7",
-    "unibeautify": "^0.10.1"
-  }
 }
