@@ -1,5 +1,13 @@
 // Place your settings in this file to overwrite default and user settings.
 {
     "editor.formatOnSave": false,
-    "javascript.format.enable": false
+    "javascript.format.enable": false,
+    "prettier.disableLanguages": [
+        "css",
+        "html",
+        "javascript",
+        "jsx",
+        "vue",
+        "typescript"
+    ]
 }
