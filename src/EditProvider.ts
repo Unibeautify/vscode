@@ -9,25 +9,24 @@ import { extname } from "path";
 import * as cosmiconfig from "cosmiconfig";
 
 export class EditProvider
-  implements
-    vscode.DocumentRangeFormattingEditProvider,
+  implements vscode.DocumentRangeFormattingEditProvider,
     vscode.DocumentFormattingEditProvider {
   public provideDocumentFormattingEdits(
     document: vscode.TextDocument,
     options: vscode.FormattingOptions,
-    token: vscode.CancellationToken,
+    token: vscode.CancellationToken
   ): PromiseLike<vscode.TextEdit[]> {
     return this.provideDocumentRangeFormattingEdits(
       document,
       this.fullRange(document),
       options,
-      token,
+      token
     );
   }
 
   private fullRange(document: vscode.TextDocument): vscode.Range {
     return document.validateRange(
-      new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE),
+      new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)
     );
   }
 
@@ -35,7 +34,7 @@ export class EditProvider
     document: vscode.TextDocument,
     range: vscode.Range,
     options: vscode.FormattingOptions,
-    token: vscode.CancellationToken,
+    token: vscode.CancellationToken
   ): PromiseLike<vscode.TextEdit[]> {
     const text: string = document.getText(range);
     return this.beautifyRange(document, range, options, token)
@@ -51,7 +50,7 @@ export class EditProvider
     document: vscode.TextDocument,
     range: vscode.Range,
     options: vscode.FormattingOptions,
-    token: vscode.CancellationToken,
+    token: vscode.CancellationToken
   ): Promise<string> {
     console.log("FormattingOptions", options);
     const text: string = document.getText(range);
@@ -74,12 +73,12 @@ export class EditProvider
           console.error(error);
           return Promise.reject(error);
         });
-      },
+      }
     );
   }
 
   private languageNameForDocument(
-    document: vscode.TextDocument,
+    document: vscode.TextDocument
   ): string | undefined {
     const languages = this.languagesForDocument(document);
     if (languages.length === 0) {

@@ -23,7 +23,7 @@ declare namespace Cosmiconfig {
 declare module "cosmiconfig" {
   function cosmiconfig(
     moduleName: string,
-    options: Cosmiconfig.Options,
+    options: Cosmiconfig.Options
   ): Cosmiconfig.Explorer;
   namespace cosmiconfig {
 
