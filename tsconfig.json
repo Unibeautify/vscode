@@ -9,7 +9,16 @@
         "declaration": true,
         "moduleResolution": "node",
         "rootDir": ".",
-        "outDir": "out"
+        "outDir": "out",
+        "typeRoots": [
+            "./node_modules/@types",
+            "./src/@types"
+        ],
+        "types": [
+            "node",
+            "cosmiconfig",
+            "mocha"
+        ]
     },
     "exclude": [
         "node_modules",

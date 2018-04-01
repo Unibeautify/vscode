@@ -1,5 +1,4 @@
 import * as vscode from "vscode";
-import { Extension } from "./Extension";
 import { EditProvider } from "./EditProvider";
 import unibeautify from "unibeautify";
 import { beautifiers } from "./beautifiers";

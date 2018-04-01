@@ -6,6 +6,7 @@ import unibeautify, {
 } from "unibeautify";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
+import * as cosmiconfig from "cosmiconfig";
 
 export class EditProvider
   implements vscode.DocumentRangeFormattingEditProvider,
@@ -35,30 +36,45 @@ export class EditProvider
     options: vscode.FormattingOptions,
     token: vscode.CancellationToken
   ): PromiseLike<vscode.TextEdit[]> {
-    console.log("FormattingOptions", options);
     const text: string = document.getText(range);
-    const beautifyOptions: LanguageOptionValues = {};
-    const languageName = this.languageNameForDocument(document);
-    const fileExtension = this.fileExtensionForDocument(document);
-    const filePath = document.fileName;
-    const projectPath = vscode.workspace.rootPath;
-    const beautifyData: BeautifyData = {
-      languageName,
-      fileExtension,
-      filePath,
-      projectPath,
-      options: beautifyOptions,
-      text,
-    };
-    console.log("beautifyData", beautifyData);
-    return unibeautify
-      .beautify(beautifyData)
+    return this.beautifyRange(document, range, options, token)
       .then((newText: string) => getTextEdits(text, newText))
       .then(textEdits => translateTextEdits(textEdits, range))
       .catch(error => {
         console.error(error);
         return Promise.reject(error);
       });
+  }
+
+  private beautifyRange(
+    document: vscode.TextDocument,
+    range: vscode.Range,
+    options: vscode.FormattingOptions,
+    token: vscode.CancellationToken
+  ): Promise<string> {
+    console.log("FormattingOptions", options);
+    const text: string = document.getText(range);
+    const fileExtension = this.fileExtensionForDocument(document);
+    const filePath = document.fileName;
+    const projectPath = vscode.workspace.rootPath;
+    return this.beautifyOptions(filePath || projectPath).then(
+      beautifyOptions => {
+        const languageName = this.languageNameForDocument(document);
+        const beautifyData: BeautifyData = {
+          languageName,
+          fileExtension,
+          filePath,
+          projectPath,
+          options: beautifyOptions,
+          text,
+        };
+        console.log("beautifyData", beautifyData);
+        return unibeautify.beautify(beautifyData).catch(error => {
+          console.error(error);
+          return Promise.reject(error);
+        });
+      }
+    );
   }
 
   private languageNameForDocument(
@@ -81,5 +97,20 @@ export class EditProvider
       return extname(fileName).slice(1);
     }
     return undefined;
+  }
+
+  protected beautifyOptions(filePath: string): Promise<LanguageOptionValues> {
+    try {
+      const explorerOptions: Cosmiconfig.Options = {
+        rcExtensions: true,
+      };
+      const explorer = cosmiconfig("unibeautify", explorerOptions);
+      const defaultConfig: LanguageOptionValues = {};
+      return explorer
+        .load(filePath)
+        .then(result => (result ? result.config : defaultConfig));
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 }
