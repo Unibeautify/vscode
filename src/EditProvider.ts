@@ -101,13 +101,17 @@ export class EditProvider
   }
 
   protected beautifyOptions(filePath: string): Promise<LanguageOptionValues> {
-    const explorerOptions: Cosmiconfig.Options = {
-      rcExtensions: true,
-    };
-    const explorer = cosmiconfig("unibeautify", explorerOptions);
-    const defaultConfig: LanguageOptionValues = {};
-    return explorer
-      .load(filePath)
-      .then(result => (result ? result.config : defaultConfig));
+    try {
+      const explorerOptions: Cosmiconfig.Options = {
+        rcExtensions: true,
+      };
+      const explorer = cosmiconfig("unibeautify", explorerOptions);
+      const defaultConfig: LanguageOptionValues = {};
+      return explorer
+        .load(filePath)
+        .then(result => (result ? result.config : defaultConfig));
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 }
