@@ -19,13 +19,13 @@ declare module "jest" {
 }
 
 declare module "jest-environment-node" {
-  export default class {
+  export default class NodeEnvironment {
     public global: any;
 
     constructor(config: any);
 
-    public setup(): Promise<any>;
-    public teardown(): Promise<any>;
+    public setup(): Promise<void>;
+    public teardown(): Promise<void>;
     public runScript(script: any): any;
   }
 }

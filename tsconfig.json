@@ -17,7 +17,7 @@
         "types": [
             "node",
             "cosmiconfig",
-            "mocha"
+            "jest"
         ]
     },
     "exclude": [
