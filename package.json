@@ -15,7 +15,7 @@
     ],
     "scripts": {
         "vscode:prepublish": "npm run build",
-        "test": "cross-env CODE_TESTS_WORKSPACE=testProject node ./node_modules/vscode/bin/test",
+        "test": "cross-env CODE_TESTS_WORKSPACE=testProject CODE_TESTS_PATH=${INIT_CWD}/out/test/test-runner node ./node_modules/vscode/bin/test",
         "build": "npm run clean && tsc",
         "dev": "npm run clean && tsc --watch",
         "clean": "rimraf out/",
