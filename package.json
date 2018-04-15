@@ -49,18 +49,6 @@
         "url": "https://github.com/Unibeautify/vscode/issues"
     },
     "homepage": "https://github.com/Unibeautify/vscode#readme",
-    "contributes": {
-        "commands": [
-            {
-                "title": "Beautify File",
-                "command": "Unibeautify.beautifyFile"
-            },
-            {
-                "title": "Beautify Selection",
-                "command": "Unibeautify.beautifySelection"
-            }
-        ]
-    },
     "badges": [
         {
             "url": "https://badges.greenkeeper.io/Unibeautify/vscode.svg",
