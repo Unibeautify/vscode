@@ -8,6 +8,7 @@
         "target": "ES6",
         "declaration": true,
         "moduleResolution": "node",
+        "esModuleInterop": true,
         "rootDir": ".",
         "outDir": "out",
         "typeRoots": [
@@ -17,7 +18,7 @@
         "types": [
             "node",
             "cosmiconfig",
-            "mocha"
+            "jest"
         ]
     },
     "exclude": [

@@ -6,7 +6,7 @@ import unibeautify, {
 } from "unibeautify";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
-import * as cosmiconfig from "cosmiconfig";
+import cosmiconfig from "cosmiconfig";
 
 export class EditProvider
   implements vscode.DocumentRangeFormattingEditProvider,
