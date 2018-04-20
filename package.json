@@ -83,7 +83,7 @@
     "dependencies": {
         "@unibeautify/beautifier-eslint": "^0.4.1",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
-        "@unibeautify/beautifier-prettier": "^0.7.5",
+        "@unibeautify/beautifier-prettier": "^0.8.0",
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
         "cosmiconfig": "^4.0.0",
         "diff": "^3.3.0",
