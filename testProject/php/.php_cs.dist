@@ -1,0 +1,24 @@
+<?php
+
+return PhpCsFixer\Config::create()
+    ->setRules([
+        'elseif' => true,
+        'lowercase_constants' => true
+    ])
+    ->setFinder(PhpCsFixer\Finder::create()
+        ->exclude('vendor')
+        ->in(__DIR__)
+    )
+;
+
+/*
+This document has been generated with
+https://mlocati.github.io/php-cs-fixer-configurator/
+you can change this configuration by importing this YAML code:
+
+fixers:
+  elseif: true
+  lowercase_constants: true
+  no_useless_else: true
+
+*/
