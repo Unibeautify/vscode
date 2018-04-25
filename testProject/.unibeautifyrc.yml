@@ -14,3 +14,7 @@ TypeScript:
   quotes: "double"
   space_after_anon_function: false
   wrap_line_length: 80
+PHP:
+  beautifiers: ["PHP-CS-Fixer"]
+  "PHP-CS-Fixer":
+    prefer_beautifier_config: true

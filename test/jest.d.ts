@@ -8,7 +8,7 @@ declare module "jest" {
    */
   export function runCLI(
     jestConfig: object,
-    projects: string[],
+    projects: string[]
   ): Promise<{ globalConfig: object; results: ResultsObject }>;
 
   export interface ResultsObject {
