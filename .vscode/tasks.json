@@ -4,7 +4,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "taskName": "build",
+            "label": "build",
             // we want to run npm
             "command": "npm",
             // the command is a shell script
@@ -18,23 +18,8 @@
                 "run",
                 "build"
             ],
-            // The tsc compiler is started in watching mode
-            "isBackground": true,
             // use the standard tsc in watch mode problem matcher to find compile problems in the output.
-            "problemMatcher": "$tsc-watch"
-        },
-        {
-            "type": "npm",
-            "script": "build",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            }
-        },
-        {
-            "taskName": "build-watch",
-            "type": "npm",
-            "script": "dev"
-        }        
+            "problemMatcher": "$tsc"
+        }
     ]
 }

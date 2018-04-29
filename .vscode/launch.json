@@ -30,7 +30,7 @@
                 "--extensionTestsPath=${workspaceRoot}/out/test/test-runner"
             ],
             "outFiles": [
-                "./out"
+                "out"
             ],
             "preLaunchTask": "build"
         }
