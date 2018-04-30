@@ -2,7 +2,7 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/Unibeautify/vscode.svg)](https://greenkeeper.io/)
 [![Build Status](https://travis-ci.org/Unibeautify/vscode.svg?branch=master)](https://travis-ci.org/Unibeautify/vscode)
-![Visual Studio Marketplace](https://img.shields.io/vscode-marketplace/d/Glavin001.unibeautify-vscode.svg)
+[![Visual Studio Marketplace](https://img.shields.io/vscode-marketplace/d/Glavin001.unibeautify-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=Glavin001.unibeautify-vscode)
 
 > [Unibeautify](https://unibeautify.com/) for [Visual Studio Code](https://code.visualstudio.com/)
 
