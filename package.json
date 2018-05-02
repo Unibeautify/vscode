@@ -68,7 +68,7 @@
         "@types/diff": "^3.2.0",
         "@types/jest": "^22.2.2",
         "@types/lodash": "^4.14.71",
-        "@types/node": "^9.4.7",
+        "@types/node": "^10.0.3",
         "@types/source-map-support": "^0.4.0",
         "cross-env": "^5.1.4",
         "jest": "^22.4.3",
