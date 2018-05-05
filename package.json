@@ -86,7 +86,7 @@
         "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
         "@unibeautify/beautifier-prettier": "^0.8.0",
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
-        "cosmiconfig": "^4.0.0",
+        "cosmiconfig": "^5.0.0",
         "diff": "^3.3.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.7.5",
