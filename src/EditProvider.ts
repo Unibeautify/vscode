@@ -101,13 +101,10 @@ export class EditProvider
 
   protected beautifyOptions(filePath: string): Promise<LanguageOptionValues> {
     try {
-      const explorerOptions: Cosmiconfig.Options = {
-        rcExtensions: true,
-      };
-      const explorer = cosmiconfig("unibeautify", explorerOptions);
+      const explorer = cosmiconfig("unibeautify", {});
       const defaultConfig: LanguageOptionValues = {};
       return explorer
-        .load(filePath)
+        .search(filePath)
         .then(result => (result ? result.config : defaultConfig));
     } catch (error) {
       return Promise.reject(error);
