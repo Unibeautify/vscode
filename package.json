@@ -65,6 +65,7 @@
         "vscode": "^1.6.0"
     },
     "devDependencies": {
+        "@types/cosmiconfig": "^5.0.0",
         "@types/diff": "^3.2.0",
         "@types/jest": "^22.2.2",
         "@types/lodash": "^4.14.71",
@@ -75,10 +76,10 @@
         "jest-environment-node": "^22.4.1",
         "rimraf": "^2.5.4",
         "source-map-support": "^0.5.3",
-        "ts-jest": "^22.4.2",
-        "tslint": "^5.9.1",
-        "typescript": "^2.4.2",
-        "vscode": "^1.1.14"
+        "ts-jest": "^22.4.6",
+        "tslint": "^5.10.0",
+        "typescript": "^2.8.3",
+        "vscode": "^1.1.17"
     },
     "dependencies": {
         "@unibeautify/beautifier-eslint": "^0.5.0",
@@ -86,12 +87,12 @@
         "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
         "@unibeautify/beautifier-prettier": "^0.8.0",
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
-        "cosmiconfig": "^4.0.0",
+        "cosmiconfig": "^5.0.2",
         "diff": "^3.3.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.7.5",
         "prettier": "^1.12.1",
         "prettydiff2": "^2.2.7",
-        "unibeautify": "^0.13.1"
+        "unibeautify": "^0.14.0"
     }
 }
