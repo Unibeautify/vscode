@@ -84,7 +84,7 @@
     "dependencies": {
         "@unibeautify/beautifier-eslint": "^0.5.0",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
-        "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
+        "@unibeautify/beautifier-php-cs-fixer": "^0.3.0",
         "@unibeautify/beautifier-prettier": "^0.8.0",
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
         "cosmiconfig": "^5.0.2",
