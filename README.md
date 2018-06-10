@@ -11,7 +11,38 @@
 Search for `Unibeautify` extension and click `Install`.
 See [Install an extension](https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension) for more details.
 
+```bash
+code --install-extension Glavin001.unibeautify-vscode
+```
+
 ## Usage
+
+### Configure
+
+> Important: You must first configure for the extension to work properly.
+
+See https://unibeautify.com/docs/config-file.html for details.
+
+#### Example Configuration File
+
+Given the following scenario:
+- [x] Enable language [JavaScript](https://unibeautify.com/docs/language-javascript.html)
+- [x] Enable beautifier [Prettier](https://unibeautify.com/docs/beautifier-prettier.html)
+- [x] Configure option [`indent_style`](https://unibeautify.com/docs/option-indent-style.html) to be `space`
+- [x] Configure option [`indent_size`](https://unibeautify.com/docs/option-indent-size.html) to be `2`
+
+Create a `.unibeautifyrc.yml` file in your project's root directory with the following contents:
+
+
+```yaml
+---
+JavaScript: # Enable language
+  beautifiers: ["Prettier"] # Enable beautifiers
+  indent_style: "space"
+  indent_size: 2
+```
+
+Then look at https://unibeautify.com/docs/beautifier-prettier.html and https://unibeautify.com/docs/options-for-languages.html for more supported options.
 
 ### Keyboard Shortcut
 
