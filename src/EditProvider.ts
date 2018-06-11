@@ -9,7 +9,8 @@ import { extname } from "path";
 import cosmiconfig from "cosmiconfig";
 
 export class EditProvider
-  implements vscode.DocumentRangeFormattingEditProvider,
+  implements
+    vscode.DocumentRangeFormattingEditProvider,
     vscode.DocumentFormattingEditProvider {
   public provideDocumentFormattingEdits(
     document: vscode.TextDocument,
