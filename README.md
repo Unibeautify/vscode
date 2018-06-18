@@ -1,6 +1,6 @@
 # Unibeautify for VSCode
 
-[![Build Status](https://travis-ci.com/Unibeautify/vscode.svg?branch=master)](https://travis-ci.com/Unibeautify/vscode) [![Visual Studio Marketplace](https://img.shields.io/vscode-marketplace/d/Glavin001.unibeautify-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=Glavin001.unibeautify-vscode)
+[![Build Status](https://travis-ci.com/Unibeautify/vscode.svg?branch=master)](https://travis-ci.com/Unibeautify/vscode) [![Visual Studio Marketplace](https://img.shields.io/vscode-marketplace/d/Glavin001.unibeautify-vscode.svg)](https://marketplace.visualstudio.com/items?itemName=Glavin001.unibeautify-vscode) [![Renovate enabled](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovateapp.com/)
 
 > [Unibeautify](https://unibeautify.com/) for [Visual Studio Code](https://code.visualstudio.com/)
 
@@ -21,7 +21,7 @@ code --install-extension Glavin001.unibeautify-vscode
 
 > Important: You must first configure for the extension to work properly.
 
-Use the Unibeautify assistant, https://assistant.unibeautify.com/, for an interactive setup of your configuration file. Simply select the languages you want, and it will walk you though the options available. At the end simply download or copy to your clipboard your configuration.
+Use the [Unibeautify assistant](https://assistant.unibeautify.com/) for an interactive setup of your configuration file. Simply select the languages you want, and it will walk you though the options available. At the end simply download or copy to your clipboard your configuration.
 
 See https://unibeautify.com/docs/config-file.html for details.
 
