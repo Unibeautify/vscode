@@ -21,7 +21,7 @@ code --install-extension Glavin001.unibeautify-vscode
 
 > Important: You must first configure for the extension to work properly.
 
-Use the [Unibeautify assistant](https://assistant.unibeautify.com/) for an interactive setup of your configuration file. Simply select the languages you want, and it will walk you though the options available. At the end simply download or copy to your clipboard your configuration.
+Use the [Unibeautify assistant](https://assistant.unibeautify.com/#/setup) for an interactive setup of your configuration file. Simply select the languages you want, and it will walk you though the options available. At the end simply download or copy to your clipboard your configuration.
 
 See https://unibeautify.com/docs/config-file.html for details.
 
