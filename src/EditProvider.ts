@@ -58,24 +58,22 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return EditProvider.beautifyOptions(filePath).then(
-      beautifyOptions => {
-        const languageName = this.languageNameForDocument(document);
-        const beautifyData: BeautifyData = {
-          languageName,
-          fileExtension,
-          filePath,
-          projectPath,
-          options: beautifyOptions,
-          text,
-        };
-        console.log("beautifyData", beautifyData);
-        return unibeautify.beautify(beautifyData).catch(error => {
-          console.error(error);
-          return Promise.reject(error);
-        });
-      }
-    );
+    return EditProvider.beautifyOptions(filePath).then(beautifyOptions => {
+      const languageName = this.languageNameForDocument(document);
+      const beautifyData: BeautifyData = {
+        languageName,
+        fileExtension,
+        filePath,
+        projectPath,
+        options: beautifyOptions,
+        text,
+      };
+      console.log("beautifyData", beautifyData);
+      return unibeautify.beautify(beautifyData).catch(error => {
+        console.error(error);
+        return Promise.reject(error);
+      });
+    });
   }
 
   private languageNameForDocument(
@@ -100,7 +98,9 @@ export class EditProvider
     return undefined;
   }
 
-  public static beautifyOptions(filePath: string = vscode.workspace.rootPath): Promise<LanguageOptionValues> {
+  public static beautifyOptions(
+    filePath: string = vscode.workspace.rootPath
+  ): Promise<LanguageOptionValues> {
     try {
       const explorer = cosmiconfig("unibeautify", {});
       const defaultConfig: LanguageOptionValues = {};
@@ -111,5 +111,4 @@ export class EditProvider
       return Promise.reject(error);
     }
   }
-
 }
