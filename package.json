@@ -82,6 +82,7 @@
         "vscode": "^1.1.17"
     },
     "dependencies": {
+        "@unibeautify/beautifier-clang-format": "^0.2.0",
         "@unibeautify/beautifier-eslint": "^0.5.0",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
         "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
