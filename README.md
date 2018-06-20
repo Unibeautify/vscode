@@ -15,6 +15,21 @@ See [Install an extension](https://code.visualstudio.com/docs/editor/extension-g
 code --install-extension Glavin001.unibeautify-vscode
 ```
 
+## Support
+
+See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for list of supported beautifiers.
+
+<!--START:SUPPORT-TABLE-->
+| # | Beautifier | Documentation |
+| --- | --- | --- |
+| 1 | ClangFormat | https://unibeautify.com/docs/beautifier-clangformat.html |
+| 2 | ESLint | https://unibeautify.com/docs/beautifier-eslint.html |
+| 3 | JS-Beautify | https://unibeautify.com/docs/beautifier-js-beautify.html |
+| 4 | PHP-CS-Fixer | https://unibeautify.com/docs/beautifier-php-cs-fixer.html |
+| 5 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
+| 6 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
+<!--END:SUPPORT-TABLE-->
+
 ## Usage
 
 ### Configure
