@@ -58,7 +58,7 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return this.beautifyOptions(filePath || projectPath).then(
+    return EditProvider.beautifyOptions(filePath).then(
       beautifyOptions => {
         const languageName = this.languageNameForDocument(document);
         const beautifyData: BeautifyData = {
@@ -100,7 +100,7 @@ export class EditProvider
     return undefined;
   }
 
-  protected beautifyOptions(filePath: string): Promise<LanguageOptionValues> {
+  public static beautifyOptions(filePath: string = vscode.workspace.rootPath): Promise<LanguageOptionValues> {
     try {
       const explorer = cosmiconfig("unibeautify", {});
       const defaultConfig: LanguageOptionValues = {};
@@ -111,4 +111,5 @@ export class EditProvider
       return Promise.reject(error);
     }
   }
+
 }
