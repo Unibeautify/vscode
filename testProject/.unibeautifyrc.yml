@@ -18,3 +18,4 @@ PHP:
   beautifiers: ["PHP-CS-Fixer"]
   "PHP-CS-Fixer":
     prefer_beautifier_config: true
+CSS: false

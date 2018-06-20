@@ -14,12 +14,13 @@
         "*"
     ],
     "scripts": {
-        "vscode:prepublish": "npm run build",
+        "vscode:prepublish": "npm run build && npm run update-readme",
         "test": "cross-env CODE_TESTS_WORKSPACE=testProject CODE_TESTS_PATH=${INIT_CWD}/out/test/test-runner node ./node_modules/vscode/bin/test",
         "build": "npm run clean && tsc",
         "dev": "npm run clean && tsc --watch",
         "clean": "rimraf out/",
-        "postinstall": "node ./node_modules/vscode/bin/install"
+        "postinstall": "node ./node_modules/vscode/bin/install",
+        "update-readme": "node out/scripts/update-readme"
     },
     "repository": {
         "type": "git",
@@ -82,6 +83,7 @@
         "vscode": "^1.1.17"
     },
     "dependencies": {
+        "@unibeautify/beautifier-clang-format": "^0.2.0",
         "@unibeautify/beautifier-eslint": "^0.5.0",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
         "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
@@ -93,6 +95,19 @@
         "js-beautify": "^1.7.5",
         "prettier": "^1.12.1",
         "prettydiff2": "^2.2.7",
-        "unibeautify": "^0.14.0"
+        "unibeautify": "^0.15.0"
+    },
+    "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Unibeautify Configuration",
+            "properties": {
+                "unibeautify.enabled": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Enable/disable Unibeautify formatter"
+                }
+            }
+        }
     }
 }

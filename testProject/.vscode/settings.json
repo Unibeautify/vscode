@@ -2,6 +2,7 @@
 {
     "editor.formatOnSave": false,
     "javascript.format.enable": false,
+    "unibeautify.enabled": true,
     "prettier.disableLanguages": [
         "css",
         "html",
@@ -9,5 +10,8 @@
         "jsx",
         "vue",
         "typescript"
-    ]
+    ],
+    "files.associations": {
+        "*.myphp": "php"
+    }
 }

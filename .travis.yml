@@ -23,3 +23,9 @@ install:
 script:
   - npm test --silent
   - npm list --production --parseable --depth=99999 # Check if can publish VSCode extension
+  - npm run vscode:prepublish
+  - git status
+  - git diff
+  - CHANGED_FILES=$(git diff --name-only | grep -v '^package-lock.json') || true
+  - echo "Changed files:\n$CHANGED_FILES"
+  - if [[ -z "${CHANGED_FILES// }" ]]; then echo "No changes!"; else exit 1; fi

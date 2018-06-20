@@ -6,7 +6,7 @@
 
 ![demo](https://user-images.githubusercontent.com/1885333/37237670-0f06fcde-23ed-11e8-9200-4d2089323fe1.gif)
 
-## Install
+## :tada: Install
 
 Search for `Unibeautify` extension and click `Install`.
 See [Install an extension](https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension) for more details.
@@ -15,17 +15,32 @@ See [Install an extension](https://code.visualstudio.com/docs/editor/extension-g
 code --install-extension Glavin001.unibeautify-vscode
 ```
 
-## Usage
+## :books: Support
 
-### Configure
+See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for list of supported beautifiers.
+
+<!--START:SUPPORT-TABLE-->
+| # | Beautifier | Documentation |
+| --- | --- | --- |
+| 1 | ClangFormat | https://unibeautify.com/docs/beautifier-clangformat.html |
+| 2 | ESLint | https://unibeautify.com/docs/beautifier-eslint.html |
+| 3 | JS-Beautify | https://unibeautify.com/docs/beautifier-js-beautify.html |
+| 4 | PHP-CS-Fixer | https://unibeautify.com/docs/beautifier-php-cs-fixer.html |
+| 5 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
+| 6 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
+<!--END:SUPPORT-TABLE-->
+
+## :art: Usage
+
+### :wrench: Configure
 
 > Important: You must first configure for the extension to work properly.
 
-Use the [Unibeautify assistant](https://assistant.unibeautify.com/#/setup) for an interactive setup of your configuration file. Simply select the languages you want, and it will walk you though the options available. At the end simply download or copy to your clipboard your configuration.
+Use the [Unibeautify Assistant](https://assistant.unibeautify.com/#/setup) for an interactive setup of your configuration file. Simply select the languages you want and the configuration assistant will walk you though the options available. At the end, simply download or copy to your clipboard your configuration.
+
+#### :pencil: Example Configuration File
 
 See https://unibeautify.com/docs/config-file.html for details.
-
-#### Example Configuration File
 
 Given the following scenario:
 - [x] Enable language [JavaScript](https://unibeautify.com/docs/language-javascript.html)
@@ -46,7 +61,7 @@ JavaScript: # Enable language
 
 Then look at https://unibeautify.com/docs/beautifier-prettier.html and https://unibeautify.com/docs/options-for-languages.html for more supported options.
 
-### Keyboard Shortcut
+### :zap: Keyboard Shortcut
 
 From [Stack Overflow](https://stackoverflow.com/a/29973358/2578205):
 
@@ -54,7 +69,7 @@ From [Stack Overflow](https://stackoverflow.com/a/29973358/2578205):
 - Mac: <kbd>Shift</kbd> + <kbd>Option</kbd> + <kbd>F</kbd>
 - Ubuntu: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
 
-### Command Palette
+### :musical_keyboard: Command Palette
 
 Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) (<kbd>Ctrl</kbd> +<kbd>Shift</kbd>+ <kbd>P</kbd> or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on Mac) and search for `format`:
 
@@ -63,17 +78,52 @@ Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userint
 - `Format Document` - Formats the entire editor document.
 - `Format Selection` - Formats only the selection. Only appears when text selected.
 
-## Contribute
+## :question: FAQ
 
-### Running extension
+### How do I add language support for a non-standard file extension?
 
-1. Open this repository inside VSCode
-2. Open `Debug Side Bar`
+This section is for you if you are seeing the following error message after running `Format Document` or similar:
 
-![debug sidebar](https://msdnshared.blob.core.windows.net/media/2016/10/image364.png)
+![There is no document formatter for 'plaintext'-files installed.](https://user-images.githubusercontent.com/1885333/41636879-5665cf80-7427-11e8-9b8e-9488f02d4a62.png)
 
-3. Run (`B` below) with `Launch Extension`
+See https://code.visualstudio.com/docs/languages/overview#_adding-a-file-extension-to-a-language for VSCode documentation on `file.associations` [setting](https://code.visualstudio.com/docs/getstarted/settings).
+For example, the `.vscode/settings.json` below adds the `.myphp` file extension to the `php` language identifier:
 
-![debug](https://code.visualstudio.com/assets/docs/editor/debugging/debugging_hero.png)
+```json
+{
+  "files.associations": {
+    "*.myphp": "php"
+  }
+}
+```
 
-See https://code.visualstudio.com/docs/extensions/testing-extensions for more information.
+| Before | After |
+| --- | --- |
+| ![before](https://user-images.githubusercontent.com/1885333/41636908-7a91d494-7427-11e8-97b1-e4e7ce8fea8a.png) | ![after](https://user-images.githubusercontent.com/1885333/41636940-b4606e10-7427-11e8-9d2c-93d8a7d24116.png)
+
+### How do I disable a supported language?
+
+By default all languages supported by Unibeautify will be enabled.
+
+You can disable a specific language by setting the language options to `false` as shown below.
+
+> **Important**: You must restart/reload VSCode after enabling/disabling a language.
+
+Example `.unibeautifyrc.yml`:
+
+```yaml
+---
+CSS: false # Disable CSS!
+JavaScript: # Enable TypeScript
+  beautifiers: ["Prettier"] # Enable beautifiers
+  indent_style: "space"
+  indent_size: 2
+```
+
+| Before | After |
+| --- | --- |
+| Beautified CSS files | ![There is no document formatter for 'css'-files installed.](https://user-images.githubusercontent.com/1885333/41637148-d28b5764-7428-11e8-9763-007f44fe6787.png) |
+
+## Contributing
+
+See [CONTRIBUTING.md](https://github.com/Unibeautify/vscode/blob/master/CONTRIBUTING.md).
