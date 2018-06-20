@@ -6,7 +6,7 @@
 
 ![demo](https://user-images.githubusercontent.com/1885333/37237670-0f06fcde-23ed-11e8-9200-4d2089323fe1.gif)
 
-## Install
+## :tada: Install
 
 Search for `Unibeautify` extension and click `Install`.
 See [Install an extension](https://code.visualstudio.com/docs/editor/extension-gallery#_install-an-extension) for more details.
@@ -15,7 +15,7 @@ See [Install an extension](https://code.visualstudio.com/docs/editor/extension-g
 code --install-extension Glavin001.unibeautify-vscode
 ```
 
-## Support
+## :books: Support
 
 See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for list of supported beautifiers.
 
@@ -30,15 +30,15 @@ See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for lis
 | 6 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
 <!--END:SUPPORT-TABLE-->
 
-## Usage
+## :art: Usage
 
-### Configure
+### :wrench: Configure
 
 > Important: You must first configure for the extension to work properly.
 
 Use the [Unibeautify Assistant](https://assistant.unibeautify.com/#/setup) for an interactive setup of your configuration file. Simply select the languages you want and the configuration assistant will walk you though the options available. At the end, simply download or copy to your clipboard your configuration.
 
-#### Example Configuration File
+#### :pencil: Example Configuration File
 
 See https://unibeautify.com/docs/config-file.html for details.
 
@@ -61,7 +61,7 @@ JavaScript: # Enable language
 
 Then look at https://unibeautify.com/docs/beautifier-prettier.html and https://unibeautify.com/docs/options-for-languages.html for more supported options.
 
-### Keyboard Shortcut
+### :zap: Keyboard Shortcut
 
 From [Stack Overflow](https://stackoverflow.com/a/29973358/2578205):
 
@@ -69,7 +69,7 @@ From [Stack Overflow](https://stackoverflow.com/a/29973358/2578205):
 - Mac: <kbd>Shift</kbd> + <kbd>Option</kbd> + <kbd>F</kbd>
 - Ubuntu: <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>
 
-### Command Palette
+### :musical_keyboard: Command Palette
 
 Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) (<kbd>Ctrl</kbd> +<kbd>Shift</kbd>+ <kbd>P</kbd> or <kbd>Command</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on Mac) and search for `format`:
 
@@ -78,7 +78,7 @@ Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userint
 - `Format Document` - Formats the entire editor document.
 - `Format Selection` - Formats only the selection. Only appears when text selected.
 
-## FAQ
+## :question: FAQ
 
 ### How do I add language support for a non-standard file extension?
 
@@ -101,7 +101,7 @@ For example, the `.vscode/settings.json` below adds the `.myphp` file extension 
 | --- | --- |
 | ![before](https://user-images.githubusercontent.com/1885333/41636908-7a91d494-7427-11e8-97b1-e4e7ce8fea8a.png) | ![after](https://user-images.githubusercontent.com/1885333/41636940-b4606e10-7427-11e8-9d2c-93d8a7d24116.png)
 
-#### How do I disable a supported language?
+### How do I disable a supported language?
 
 By default all languages supported by Unibeautify will be enabled.
 
