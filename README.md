@@ -26,8 +26,9 @@ See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for lis
 | 2 | ESLint | https://unibeautify.com/docs/beautifier-eslint.html |
 | 3 | JS-Beautify | https://unibeautify.com/docs/beautifier-js-beautify.html |
 | 4 | PHP-CS-Fixer | https://unibeautify.com/docs/beautifier-php-cs-fixer.html |
-| 5 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
-| 6 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
+| 5 | PHP_CodeSniffer | https://unibeautify.com/docs/beautifier-php_codesniffer.html |
+| 6 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
+| 7 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
 <!--END:SUPPORT-TABLE-->
 
 ## :art: Usage
