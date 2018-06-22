@@ -58,22 +58,24 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return EditProvider.beautifyOptions(filePath).then(beautifyOptions => {
-      const languageName = this.languageNameForDocument(document);
-      const beautifyData: BeautifyData = {
-        languageName,
-        fileExtension,
-        filePath,
-        projectPath,
-        options: beautifyOptions,
-        text,
-      };
-      console.log("beautifyData", beautifyData);
-      return unibeautify.beautify(beautifyData).catch(error => {
-        console.error(error);
-        return Promise.reject(error);
-      });
-    });
+    return this.beautifyOptions(filePath || projectPath).then(
+      beautifyOptions => {
+        const languageName = this.languageNameForDocument(document);
+        const beautifyData: BeautifyData = {
+          languageName,
+          fileExtension,
+          filePath,
+          projectPath,
+          options: beautifyOptions,
+          text,
+        };
+        console.log("beautifyData", beautifyData);
+        return unibeautify.beautify(beautifyData).catch(error => {
+          console.error(error);
+          return Promise.reject(error);
+        });
+      }
+    );
   }
 
   private languageNameForDocument(
@@ -98,17 +100,80 @@ export class EditProvider
     return undefined;
   }
 
-  public static beautifyOptions(
-    filePath: string = vscode.workspace.rootPath
-  ): Promise<LanguageOptionValues> {
+  protected beautifyOptions(filePath: string): Promise<LanguageOptionValues> {
     try {
-      const explorer = cosmiconfig("unibeautify", {});
+      const explorerOptions: Cosmiconfig.Options = {
+        rcExtensions: true,
+      };
+      const explorerOptionsProjectRoot: Cosmiconfig.Options = {
+        rcExtensions: true,
+        sync: true,
+      };
+
+      /**
+       * Use a different `.unibeautify` config when vscode config is set and
+       * define the weight of the config.
+       *
+       * @argument {unibeautify.defaultConfig} string path to a file
+       * @argument {unibeautify.configWeight} number the weight
+       *
+       * @default weights
+       *     0 = use the project‘s config (default)
+       *     1 = the defaultConfig path will override the project‘ config
+       *     2 = the project‘s config will partly override the global config
+       */
+      const vscodeSettings = vscode.workspace.getConfiguration("unibeautify");
+      let configPath = vscodeSettings.defaultConfig;
+      let configWeight = vscodeSettings.configWeight;
+
+      if (configPath && (configWeight == 1 || configWeight == 2)) {
+        explorerOptions.configPath = configPath;
+      }
+
+      const explorer = cosmiconfig("unibeautify", explorerOptions);
       const defaultConfig: LanguageOptionValues = {};
+
       return explorer
-        .search(filePath)
-        .then(result => (result ? result.config : defaultConfig));
+        .load(filePath)
+        .then(async (result: any) => {
+          if (!result) return defaultConfig;
+
+          if (configWeight == 0 || configWeight == 1) return result.config;
+
+          if (configWeight == 2) {
+            const explorerProjectRoot = cosmiconfig(
+              "unibeautify",
+              explorerOptionsProjectRoot
+            );
+            let resultProject = await explorerProjectRoot.load(filePath);
+            let config = this.extend({}, result.config, resultProject.config);
+
+            return config;
+          }
+        })
+        .catch(() => {
+          vscode.window.showErrorMessage(
+            `We could not find your configuration file: ${configPath}. Please correct your path, otherwise the plugin will not work!`
+          );
+        });
     } catch (error) {
       return Promise.reject(error);
     }
+  }
+
+  private extend(...obj: any[]) {
+    for (var i = 1; i < obj.length; i++)
+      for (var key in obj[i])
+        if (obj[i].hasOwnProperty(key)) {
+          if (
+            typeof obj[0][key] === "object" &&
+            typeof obj[i][key] === "object"
+          )
+            this.extend(obj[0][key], obj[i][key]);
+          else obj[0][key] = obj[i][key];
+        } else {
+          obj[0].push(obj[i][key]);
+        }
+    return obj[0];
   }
 }
