@@ -149,7 +149,7 @@ export class EditProvider
             resultProject.config
           );
 
-          return resultProject.config;
+          return config;
         } else {
           return result.config;
         }
