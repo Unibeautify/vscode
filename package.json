@@ -10,9 +10,7 @@
         "color": "#ffe04b",
         "theme": "light"
     },
-    "activationEvents": [
-        "*"
-    ],
+    "activationEvents": ["*"],
     "scripts": {
         "vscode:prepublish": "npm run build && npm run update-readme",
         "test": "cross-env CODE_TESTS_WORKSPACE=testProject CODE_TESTS_PATH=${INIT_CWD}/out/test/test-runner node ./node_modules/vscode/bin/test",
@@ -37,9 +35,7 @@
         "prettify",
         "unibeautify"
     ],
-    "categories": [
-        "Formatters"
-    ],
+    "categories": ["Formatters"],
     "author": {
         "name": "Glavin Wiechert",
         "email": "glavin.wiechert@gmail.com"
@@ -55,8 +51,7 @@
             "url": "https://badges.greenkeeper.io/Unibeautify/vscode.svg",
             "href": "https://greenkeeper.io/",
             "description": "Greenkeeper"
-        },
-        {
+        }, {
             "url": "https://travis-ci.com/Unibeautify/vscode.svg?branch=master",
             "href": "https://travis-ci.com/Unibeautify/vscode",
             "description": "Continuous integration (Travis)"
@@ -67,20 +62,19 @@
     },
     "devDependencies": {
         "@types/cosmiconfig": "^5.0.0",
-        "@types/diff": "^3.2.0",
+        "@types/diff": "^3.5.1",
         "@types/jest": "^22.2.2",
-        "@types/lodash": "^4.14.71",
-        "@types/node": "^9.4.7",
-        "@types/source-map-support": "^0.4.0",
-        "cross-env": "^5.1.4",
-        "jest": "^22.4.3",
+        "@types/node": "^9.6.22",
+        "@types/source-map-support": "^0.4.1",
+        "cross-env": "^5.2.0",
+        "jest": "^22.4.4",
         "jest-environment-node": "^22.4.1",
-        "rimraf": "^2.5.4",
-        "source-map-support": "^0.5.3",
+        "rimraf": "^2.6.2",
+        "source-map-support": "^0.5.6",
         "ts-jest": "^22.4.6",
         "tslint": "^5.10.0",
-        "typescript": "^2.8.3",
-        "vscode": "^1.1.17"
+        "typescript": "^2.9.2",
+        "vscode": "^1.1.18"
     },
     "dependencies": {
         "@unibeautify/beautifier-clang-format": "^0.2.0",
@@ -93,7 +87,7 @@
         "diff": "^3.3.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.7.5",
-        "prettier": "^1.12.1",
+        "prettier": "^1.13.5",
         "prettydiff2": "^2.2.7",
         "unibeautify": "^0.15.0"
     },
@@ -106,6 +100,19 @@
                     "type": "boolean",
                     "default": true,
                     "description": "Enable/disable Unibeautify formatter"
+                },
+                "unibeautify.defaultConfig": {
+                    "type": "string",
+                    "default": null,
+                    "description": "Type in a path to your .unibeautifyrc outside the projects folder. This will override the projects .unibeautifyrc config file."
+                },
+                "unibeautify.configWeight": {
+                    "type": "number",
+                    "default": 0,
+                    "enum": [
+                        0, 1, 2
+                    ],
+                    "description": "Set how the configuration should be handeled. Allowed values: 0 = use the project‘s config (default); 1 = the defaultConfig path will override the project‘ config; 2 = the project‘s config will partly override the global config"
                 }
             }
         }
