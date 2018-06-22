@@ -7,6 +7,7 @@ import unibeautify, {
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
 import cosmiconfig from "cosmiconfig";
+import fs from "fs";
 
 export class EditProvider
   implements
@@ -58,24 +59,22 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return this.beautifyOptions(filePath || projectPath).then(
-      beautifyOptions => {
-        const languageName = this.languageNameForDocument(document);
-        const beautifyData: BeautifyData = {
-          languageName,
-          fileExtension,
-          filePath,
-          projectPath,
-          options: beautifyOptions,
-          text,
-        };
-        console.log("beautifyData", beautifyData);
-        return unibeautify.beautify(beautifyData).catch(error => {
-          console.error(error);
-          return Promise.reject(error);
-        });
-      }
-    );
+    return EditProvider.beautifyOptions(projectPath).then(beautifyOptions => {
+      const languageName = this.languageNameForDocument(document);
+      const beautifyData: BeautifyData = {
+        languageName,
+        fileExtension,
+        filePath,
+        projectPath,
+        options: beautifyOptions,
+        text,
+      };
+      console.log("beautifyData", beautifyData);
+      return unibeautify.beautify(beautifyData).catch(error => {
+        console.error(error);
+        return Promise.reject(error);
+      });
+    });
   }
 
   private languageNameForDocument(
@@ -100,68 +99,73 @@ export class EditProvider
     return undefined;
   }
 
-  protected beautifyOptions(filePath: string): Promise<LanguageOptionValues> {
+  public static beautifyOptions(
+    path: string = vscode.workspace.rootPath
+  ): Promise<LanguageOptionValues> {
     try {
-      const explorerOptions: Cosmiconfig.Options = {
-        rcExtensions: true,
-      };
-      const explorerOptionsProjectRoot: Cosmiconfig.Options = {
-        rcExtensions: true,
-        sync: true,
-      };
-
       /**
        * Use a different `.unibeautify` config when vscode config is set and
-       * define the weight of the config.
+       * define if the project config should extend the vscode config.
        *
        * @argument {unibeautify.defaultConfig} string path to a file
-       * @argument {unibeautify.configWeight} number the weight
-       *
-       * @default weights
-       *     0 = use the project‘s config (default)
-       *     1 = the defaultConfig path will override the project‘ config
-       *     2 = the project‘s config will partly override the global config
+       * @argument {unibeautify.extendConfig} boolean extend or not
        */
       const vscodeSettings = vscode.workspace.getConfiguration("unibeautify");
-      let configPath = vscodeSettings.defaultConfig;
-      let configWeight = vscodeSettings.configWeight;
+      let defaultConfigOverride = vscodeSettings.defaultConfig;
+      let extendConfig = vscodeSettings.extendConfig;
+      let workspace = path;
 
-      if (configPath && (configWeight == 1 || configWeight == 2)) {
-        explorerOptions.configPath = configPath;
+      const explorerOptions: any = {};
+      if (defaultConfigOverride) {
+        path = defaultConfigOverride;
       }
 
       const explorer = cosmiconfig("unibeautify", explorerOptions);
       const defaultConfig: LanguageOptionValues = {};
 
-      return explorer
-        .load(filePath)
-        .then(async (result: any) => {
-          if (!result) return defaultConfig;
+      let isDirectory = fs.lstatSync(path).isDirectory();
+      if (!isDirectory) {
+        return explorer
+          .load(path)
+          .then(returnResult)
+          .catch(catchError);
+      } else {
+        return explorer
+          .search(path)
+          .then(returnResult)
+          .catch(catchError);
+      }
 
-          if (configWeight == 0 || configWeight == 1) return result.config;
+      function returnResult(result: any) {
+        if (!result) return defaultConfig;
 
-          if (configWeight == 2) {
-            const explorerProjectRoot = cosmiconfig(
-              "unibeautify",
-              explorerOptionsProjectRoot
-            );
-            let resultProject = await explorerProjectRoot.load(filePath);
-            let config = this.extend({}, result.config, resultProject.config);
-
-            return config;
-          }
-        })
-        .catch(() => {
-          vscode.window.showErrorMessage(
-            `We could not find your configuration file: ${configPath}. Please correct your path, otherwise the plugin will not work!`
+        if (defaultConfigOverride && extendConfig) {
+          let resultProject = fs.lstatSync(workspace).isDirectory()
+            ? explorer.searchSync(workspace)
+            : explorer.loadSync(workspace);
+          const config = EditProvider.extend(
+            {},
+            result.config,
+            resultProject.config
           );
-        });
+
+          return resultProject.config;
+        } else {
+          return result.config;
+        }
+      }
+
+      function catchError() {
+        return vscode.window.showErrorMessage(
+          `We could not find your configuration file: ${path}. Please correct your path, otherwise the plugin will not work!`
+        );
+      }
     } catch (error) {
       return Promise.reject(error);
     }
   }
 
-  private extend(...obj: any[]) {
+  public static extend(...obj: any[]) {
     for (var i = 1; i < obj.length; i++)
       for (var key in obj[i])
         if (obj[i].hasOwnProperty(key)) {

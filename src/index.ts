@@ -1,6 +1,6 @@
 import * as vscode from "vscode";
 import { EditProvider } from "./EditProvider";
-import unibeautify from "unibeautify";
+import unibeautify, { LanguageOptionValues } from "unibeautify";
 import { beautifiers } from "./beautifiers";
 import { Edit } from "./diffUtils";
 
@@ -11,7 +11,9 @@ export function activate(context: vscode.ExtensionContext) {
   }
   unibeautify.loadBeautifiers(beautifiers);
   const { supportedLanguages } = unibeautify;
-  return EditProvider.beautifyOptions().then(options => {
+  return EditProvider.beautifyOptions().then((options: any) => {
+    if (!options) return console.error("No options:", options);
+
     console.log("Supported languages", supportedLanguages);
     const enabledLanguages = supportedLanguages.filter(
       lang => options[lang.name] !== false

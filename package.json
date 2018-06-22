@@ -1,7 +1,7 @@
 {
     "name": "unibeautify-vscode",
     "displayName": "Unibeautify - Universal Formatter",
-    "version": "0.4.0",
+    "version": "0.5.1",
     "description": "Unibeautify (Universal Code Formatter) for Visual Studio Code",
     "preview": true,
     "main": "index.js",
@@ -80,6 +80,7 @@
         "@unibeautify/beautifier-clang-format": "^0.2.0",
         "@unibeautify/beautifier-eslint": "^0.5.0",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
+        "@unibeautify/beautifier-php-codesniffer": "^0.1.1",
         "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
         "@unibeautify/beautifier-prettier": "^0.8.0",
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
@@ -104,15 +105,12 @@
                 "unibeautify.defaultConfig": {
                     "type": "string",
                     "default": null,
-                    "description": "Type in a path to your .unibeautifyrc outside the projects folder. This will override the projects .unibeautifyrc config file."
+                    "description": "Type in a path to your .unibeautifyrc outside the workspace folder. This will override the projects .unibeautifyrc config file. Note: The file path must be absolute for a directory or file!"
                 },
-                "unibeautify.configWeight": {
-                    "type": "number",
-                    "default": 0,
-                    "enum": [
-                        0, 1, 2
-                    ],
-                    "description": "Set how the configuration should be handeled. Allowed values: 0 = use the project‘s config (default); 1 = the defaultConfig path will override the project‘ config; 2 = the project‘s config will partly override the global config"
+                "unibeautify.extendConfig": {
+                    "type": "boolean",
+                    "default": false,
+                    "description": "Set to true if your project config should extend the vscode config you have set with defaultConfig."
                 }
             }
         }
