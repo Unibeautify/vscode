@@ -67,7 +67,7 @@
     },
     "devDependencies": {
         "@types/cosmiconfig": "5.0.0",
-        "@types/diff": "3.2.2",
+        "@types/diff": "3.5.1",
         "@types/jest": "22.2.3",
         "@types/lodash": "4.14.104",
         "@types/node": "9.4.7",
