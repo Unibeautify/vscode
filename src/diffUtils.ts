@@ -64,7 +64,10 @@ export class Edit {
   }
 
   // Applies Edits to given WorkspaceEdit
-  public applyUsingWorkspaceEdit(workspaceEdit: WorkspaceEdit, fileUri: Uri): void {
+  public applyUsingWorkspaceEdit(
+    workspaceEdit: WorkspaceEdit,
+    fileUri: Uri
+  ): void {
     switch (this.action) {
       case EditTypes.EDIT_INSERT:
         workspaceEdit.insert(fileUri, this.start, this.text);
