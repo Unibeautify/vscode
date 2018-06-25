@@ -21,6 +21,7 @@ install:
   - npm run vscode:prepublish
 
 script:
+  - npm run lint
   - npm test --silent
   - npm list --production --parseable --depth=99999 # Check if can publish VSCode extension
   - npm run vscode:prepublish
