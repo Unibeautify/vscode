@@ -4,9 +4,10 @@ import unibeautify, {
   BeautifyData,
   Language,
 } from "unibeautify";
+import { UnibeautifyVSCodeSettings } from "./index";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
-import cosmiconfig from "cosmiconfig";
+import cosmiconfig, { ExplorerOptions } from "cosmiconfig";
 import fs from "fs";
 
 export class EditProvider
@@ -59,7 +60,7 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return EditProvider.beautifyOptions(projectPath).then(beautifyOptions => {
+    return EditProvider.beautifyOptions().then(beautifyOptions => {
       const languageName = this.languageNameForDocument(document);
       const beautifyData: BeautifyData = {
         languageName,
@@ -103,81 +104,41 @@ export class EditProvider
     path: string = vscode.workspace.rootPath
   ): Promise<LanguageOptionValues> {
     try {
-      /**
-       * Use a different `.unibeautify` config when vscode config is set and
-       * define if the project config should extend the vscode config.
-       *
-       * @argument {unibeautify.defaultConfig} string path to a file
-       * @argument {unibeautify.extendConfig} boolean extend or not
-       */
       const vscodeSettings = vscode.workspace.getConfiguration("unibeautify");
       let defaultConfigOverride = vscodeSettings.defaultConfig;
-      let extendConfig = vscodeSettings.extendConfig;
-      let workspace = path;
+      let pathToConfig = path;
 
-      const explorerOptions: any = {};
-      if (defaultConfigOverride) {
-        path = defaultConfigOverride;
-      }
-
-      const explorer = cosmiconfig("unibeautify", explorerOptions);
+      let cosmiOptions: ExplorerOptions = {};
+      const explorer = cosmiconfig("unibeautify", cosmiOptions);
       const defaultConfig: LanguageOptionValues = {};
 
-      let isDirectory = fs.lstatSync(path).isDirectory();
-      if (!isDirectory) {
+      if (defaultConfigOverride) {
+        pathToConfig = defaultConfigOverride;
+
         return explorer
-          .load(path)
-          .then(returnResult)
-          .catch(catchError);
-      } else {
-        return explorer
-          .search(path)
+          .load(pathToConfig)
           .then(returnResult)
           .catch(catchError);
       }
+
+      return explorer
+        .search(pathToConfig)
+        .then(returnResult)
+        .catch(catchError);
 
       function returnResult(result: any) {
         if (!result) return defaultConfig;
 
-        if (defaultConfigOverride && extendConfig) {
-          let resultProject = fs.lstatSync(workspace).isDirectory()
-            ? explorer.searchSync(workspace)
-            : explorer.loadSync(workspace);
-          const config = EditProvider.extend(
-            {},
-            result.config,
-            resultProject.config
-          );
-
-          return config;
-        } else {
-          return result.config;
-        }
+        return result.config;
       }
 
       function catchError() {
         return vscode.window.showErrorMessage(
-          `We could not find your configuration file: ${path}. Please correct your path, otherwise the plugin will not work!`
+          `We could not find your configuration file: ${pathToConfig}. Please correct your path, otherwise the plugin will not work!`
         );
       }
     } catch (error) {
       return Promise.reject(error);
     }
-  }
-
-  public static extend(...obj: any[]) {
-    for (var i = 1; i < obj.length; i++)
-      for (var key in obj[i])
-        if (obj[i].hasOwnProperty(key)) {
-          if (
-            typeof obj[0][key] === "object" &&
-            typeof obj[i][key] === "object"
-          )
-            this.extend(obj[0][key], obj[i][key]);
-          else obj[0][key] = obj[i][key];
-        } else {
-          obj[0].push(obj[i][key]);
-        }
-    return obj[0];
   }
 }

@@ -1,7 +1,7 @@
 {
     "name": "unibeautify-vscode",
     "displayName": "Unibeautify - Universal Formatter",
-    "version": "0.5.1",
+    "version": "0.5.0",
     "description": "Unibeautify (Universal Code Formatter) for Visual Studio Code",
     "preview": true,
     "main": "index.js",
@@ -10,7 +10,9 @@
         "color": "#ffe04b",
         "theme": "light"
     },
-    "activationEvents": ["*"],
+    "activationEvents": [
+        "*"
+    ],
     "scripts": {
         "vscode:prepublish": "npm run build && npm run update-readme",
         "test": "cross-env CODE_TESTS_WORKSPACE=testProject CODE_TESTS_PATH=${INIT_CWD}/out/test/test-runner node ./node_modules/vscode/bin/test",
@@ -35,7 +37,9 @@
         "prettify",
         "unibeautify"
     ],
-    "categories": ["Formatters"],
+    "categories": [
+        "Formatters"
+    ],
     "author": {
         "name": "Glavin Wiechert",
         "email": "glavin.wiechert@gmail.com"
@@ -51,7 +55,8 @@
             "url": "https://badges.greenkeeper.io/Unibeautify/vscode.svg",
             "href": "https://greenkeeper.io/",
             "description": "Greenkeeper"
-        }, {
+        },
+        {
             "url": "https://travis-ci.com/Unibeautify/vscode.svg?branch=master",
             "href": "https://travis-ci.com/Unibeautify/vscode",
             "description": "Continuous integration (Travis)"
@@ -61,34 +66,35 @@
         "vscode": "^1.6.0"
     },
     "devDependencies": {
-        "@types/cosmiconfig": "^5.0.0",
-        "@types/diff": "^3.5.1",
-        "@types/jest": "^22.2.2",
-        "@types/node": "^9.6.22",
-        "@types/source-map-support": "^0.4.1",
-        "cross-env": "^5.2.0",
-        "jest": "^22.4.4",
-        "jest-environment-node": "^22.4.1",
-        "rimraf": "^2.6.2",
-        "source-map-support": "^0.5.6",
-        "ts-jest": "^22.4.6",
-        "tslint": "^5.10.0",
-        "typescript": "^2.9.2",
-        "vscode": "^1.1.18"
+        "@types/cosmiconfig": "5.0.3",
+        "@types/diff": "3.5.1",
+        "@types/jest": "23.1.1",
+        "@types/lodash": "4.14.110",
+        "@types/node": "9.6.22",
+        "@types/source-map-support": "0.4.1",
+        "cross-env": "5.2.0",
+        "jest": "23.1.0",
+        "jest-environment-node": "23.1.0",
+        "rimraf": "2.6.2",
+        "source-map-support": "0.5.6",
+        "ts-jest": "22.4.6",
+        "tslint": "5.10.0",
+        "typescript": "2.9.2",
+        "vscode": "1.1.18"
     },
     "dependencies": {
         "@unibeautify/beautifier-clang-format": "^0.2.0",
         "@unibeautify/beautifier-eslint": "^0.5.0",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
         "@unibeautify/beautifier-php-codesniffer": "^0.1.1",
-        "@unibeautify/beautifier-php-cs-fixer": "^0.2.0",
+        "@unibeautify/beautifier-php-cs-fixer": "^0.3.0",
         "@unibeautify/beautifier-prettier": "^0.8.0",
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
-        "cosmiconfig": "^5.0.2",
+        "cosmiconfig": "^5.0.5",
         "diff": "^3.3.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.7.5",
-        "prettier": "^1.13.5",
+        "prettier": "^1.12.1",
         "prettydiff2": "^2.2.7",
         "unibeautify": "^0.15.0"
     },
@@ -105,12 +111,7 @@
                 "unibeautify.defaultConfig": {
                     "type": "string",
                     "default": null,
-                    "description": "Type in a path to your .unibeautifyrc outside the workspace folder. This will override the projects .unibeautifyrc config file. Note: The file path must be absolute for a directory or file!"
-                },
-                "unibeautify.extendConfig": {
-                    "type": "boolean",
-                    "default": false,
-                    "description": "Set to true if your project config should extend the vscode config you have set with defaultConfig."
+                    "description": "Absolute path to your .unibeautifyrc file outside the workspace folder. This will override the workspace's own .unibeautifyrc config file."
                 }
             }
         }
