@@ -12,7 +12,7 @@ import {
   WorkspaceEdit,
   TextEditorEdit,
 } from "vscode";
-import jsDiff = require("diff");
+import * as jsDiff from "diff";
 
 export enum EditTypes {
   EDIT_DELETE,
@@ -21,10 +21,10 @@ export enum EditTypes {
 }
 
 export class Edit {
-  action: number;
-  start: Position;
-  end: Position;
-  text: string;
+  public action: number;
+  public start: Position;
+  public end: Position;
+  public text: string;
 
   constructor(action: number, start: Position) {
     this.action = action;
@@ -33,7 +33,7 @@ export class Edit {
   }
 
   // Creates TextEdit for current Edit
-  apply(): TextEdit {
+  public apply(): TextEdit {
     switch (this.action) {
       case EditTypes.EDIT_INSERT:
         return TextEdit.insert(this.start, this.text);
@@ -47,7 +47,7 @@ export class Edit {
   }
 
   // Applies Edit using given TextEditorEdit
-  applyUsingTextEditorEdit(editBuilder: TextEditorEdit): void {
+  public applyUsingTextEditorEdit(editBuilder: TextEditorEdit): void {
     switch (this.action) {
       case EditTypes.EDIT_INSERT:
         editBuilder.insert(this.start, this.text);
@@ -64,7 +64,10 @@ export class Edit {
   }
 
   // Applies Edits to given WorkspaceEdit
-  applyUsingWorkspaceEdit(workspaceEdit: WorkspaceEdit, fileUri: Uri): void {
+  public applyUsingWorkspaceEdit(
+    workspaceEdit: WorkspaceEdit,
+    fileUri: Uri
+  ): void {
     switch (this.action) {
       case EditTypes.EDIT_INSERT:
         workspaceEdit.insert(fileUri, this.start, this.text);
@@ -98,10 +101,10 @@ export interface FilePatch {
  * @returns Array of FilePatch objects, one for each file
  */
 function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
-  let filePatches: FilePatch[] = [];
+  const filePatches: FilePatch[] = [];
   diffOutput.forEach((uniDiff: jsDiff.IUniDiff) => {
     let edit: Edit = null;
-    let edits: Edit[] = [];
+    const edits: Edit[] = [];
     uniDiff.hunks.forEach((hunk: jsDiff.IHunk) => {
       let startLine = hunk.oldStart;
       hunk.lines.forEach(line => {
@@ -141,7 +144,7 @@ function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
       }
     });
 
-    let fileName = uniDiff.oldFileName;
+    const fileName = uniDiff.oldFileName;
     filePatches.push({ fileName, edits });
   });
 
@@ -158,15 +161,12 @@ function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
  * @returns A single FilePatch object
  */
 function getEdits(fileName: string, oldStr: string, newStr: string): FilePatch {
-  if (process.platform === "win32") {
-    oldStr = oldStr.split("\r\n").join("\n");
-    newStr = newStr.split("\r\n").join("\n");
-  }
+  const isWindows = process.platform === "win32";
   const unifiedDiffs: jsDiff.IUniDiff = jsDiff.structuredPatch(
     fileName,
     fileName,
-    oldStr,
-    newStr,
+    isWindows ? oldStr.split("\r\n").join("\n") : oldStr,
+    isWindows ? newStr.split("\r\n").join("\n") : newStr,
     "",
     ""
   );
