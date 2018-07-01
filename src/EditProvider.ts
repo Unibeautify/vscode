@@ -4,11 +4,9 @@ import unibeautify, {
   BeautifyData,
   Language,
 } from "unibeautify";
-import { UnibeautifyVSCodeSettings } from "./index";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
 import cosmiconfig, { ExplorerOptions } from "cosmiconfig";
-import fs from "fs";
 
 export class EditProvider
   implements
@@ -66,22 +64,24 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return EditProvider.beautifyOptions().then(beautifyOptions => {
-      const languageName = this.languageNameForDocument(document);
-      const beautifyData: BeautifyData = {
-        fileExtension,
-        filePath,
-        languageName,
-        options: beautifyOptions,
-        projectPath,
-        text,
-      };
-      console.log("beautifyData", beautifyData);
-      return unibeautify.beautify(beautifyData).catch(error => {
-        console.error(error);
-        return Promise.reject(error);
-      });
-    });
+    return EditProvider.beautifyOptions(filePath || projectPath).then(
+      beautifyOptions => {
+        const languageName = this.languageNameForDocument(document);
+        const beautifyData: BeautifyData = {
+          fileExtension,
+          filePath,
+          languageName,
+          options: beautifyOptions,
+          projectPath,
+          text,
+        };
+        console.log("beautifyData", beautifyData);
+        return unibeautify.beautify(beautifyData).catch(error => {
+          console.error(error);
+          return Promise.reject(error);
+        });
+      }
+    );
   }
 
   private languageNameForDocument(
@@ -98,7 +98,9 @@ export class EditProvider
     return unibeautify.findLanguages({ vscodeLanguage: document.languageId });
   }
 
-  private fileExtensionForDocument(document: vscode.TextDocument): string {
+  private fileExtensionForDocument(
+    document: vscode.TextDocument
+  ): string | undefined {
     const { fileName } = document;
     if (fileName) {
       return extname(fileName).slice(1);
@@ -107,41 +109,35 @@ export class EditProvider
   }
 
   public static beautifyOptions(
-    path: string = vscode.workspace.rootPath
+    searchStartPath: string | undefined = vscode.workspace.rootPath
   ): Promise<LanguageOptionValues> {
     try {
       const vscodeSettings = vscode.workspace.getConfiguration("unibeautify");
-      let defaultConfigOverride = vscodeSettings.defaultConfig;
-      let pathToConfig = path;
-
-      let cosmiOptions: ExplorerOptions = {};
+      const defaultConfigPath = vscodeSettings.defaultConfig;
+      const cosmiOptions: ExplorerOptions = {};
       const explorer = cosmiconfig("unibeautify", cosmiOptions);
       const defaultConfig: LanguageOptionValues = {};
 
-      if (defaultConfigOverride) {
-        pathToConfig = defaultConfigOverride;
-
+      if (defaultConfigPath) {
         return explorer
-          .load(pathToConfig)
+          .load(defaultConfigPath)
           .then(returnResult)
-          .catch(catchError);
+          .catch(error => {
+            vscode.window.showErrorMessage(
+              `We could not find your configuration file: ${defaultConfigPath}.` +
+                "Please correct your path, otherwise the plugin will not work!"
+            );
+            throw error;
+          });
       }
 
-      return explorer
-        .search(pathToConfig)
-        .then(returnResult)
-        .catch(catchError);
+      return explorer.search(searchStartPath).then(returnResult);
 
       function returnResult(result: any) {
-        if (!result) return defaultConfig;
-
+        if (!result) {
+          return defaultConfig;
+        }
         return result.config;
-      }
-
-      function catchError() {
-        return vscode.window.showErrorMessage(
-          `We could not find your configuration file: ${pathToConfig}. Please correct your path, otherwise the plugin will not work!`
-        );
       }
     } catch (error) {
       return Promise.reject(error);

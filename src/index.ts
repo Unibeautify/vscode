@@ -2,7 +2,6 @@ import * as vscode from "vscode";
 import { EditProvider } from "./EditProvider";
 import unibeautify, { LanguageOptionValues } from "unibeautify";
 import { beautifiers } from "./beautifiers";
-import { Edit } from "./diffUtils";
 
 export function activate(context: vscode.ExtensionContext) {
   if (!isEnabled()) {

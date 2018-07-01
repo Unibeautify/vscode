@@ -9,6 +9,8 @@
         "declaration": true,
         "moduleResolution": "node",
         "esModuleInterop": true,
+        "noUnusedLocals": true,
+        "strictNullChecks": true,
         "rootDir": ".",
         "outDir": "out",
         "typeRoots": [
