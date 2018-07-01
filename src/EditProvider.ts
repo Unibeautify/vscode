@@ -48,7 +48,6 @@ export class EditProvider
       });
   }
 
-  // tslint:disable-next-line:max-func-args
   private beautifyRange({
     document,
     range,
