@@ -27,7 +27,7 @@ export class Editor {
     return undefined;
   }
 
-  setText(newText: string, range: vscode.Range = this.fullRange) {
+  public setText(newText: string, range: vscode.Range = this.fullRange) {
     return this.textEditor.edit(editBuilder =>
       editBuilder.replace(range, newText)
     );

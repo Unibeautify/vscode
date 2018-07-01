@@ -33,6 +33,7 @@ export class EditProvider
     );
   }
 
+  // tslint:disable-next-line:max-func-args
   public provideDocumentRangeFormattingEdits(
     document: vscode.TextDocument,
     range: vscode.Range,
@@ -40,7 +41,7 @@ export class EditProvider
     token: vscode.CancellationToken
   ): PromiseLike<vscode.TextEdit[]> {
     const text: string = document.getText(range);
-    return this.beautifyRange(document, range, options, token)
+    return this.beautifyRange({ document, range, options, token })
       .then((newText: string) => getTextEdits(text, newText))
       .then(textEdits => translateTextEdits(textEdits, range))
       .catch(error => {
@@ -49,12 +50,17 @@ export class EditProvider
       });
   }
 
-  private beautifyRange(
-    document: vscode.TextDocument,
-    range: vscode.Range,
-    options: vscode.FormattingOptions,
-    token: vscode.CancellationToken
-  ): Promise<string> {
+  private beautifyRange({
+    document,
+    range,
+    options,
+    token,
+  }: {
+    document: vscode.TextDocument;
+    range: vscode.Range;
+    options: vscode.FormattingOptions;
+    token: vscode.CancellationToken;
+  }): Promise<string> {
     console.log("FormattingOptions", options);
     const text: string = document.getText(range);
     const fileExtension = this.fileExtensionForDocument(document);
@@ -63,11 +69,11 @@ export class EditProvider
     return EditProvider.beautifyOptions().then(beautifyOptions => {
       const languageName = this.languageNameForDocument(document);
       const beautifyData: BeautifyData = {
-        languageName,
         fileExtension,
         filePath,
-        projectPath,
+        languageName,
         options: beautifyOptions,
+        projectPath,
         text,
       };
       console.log("beautifyData", beautifyData);
