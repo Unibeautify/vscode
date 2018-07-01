@@ -95,7 +95,7 @@
         "@unibeautify/beautifier-prettydiff": "^0.5.3",
         "cosmiconfig": "^5.0.5",
         "diff": "^3.3.0",
-        "eslint": "^4.19.1",
+        "eslint": "^5.0.0",
         "js-beautify": "^1.7.5",
         "prettier": "^1.12.1",
         "prettydiff2": "^2.2.7",
