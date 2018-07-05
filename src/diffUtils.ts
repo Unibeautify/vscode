@@ -4,7 +4,6 @@
  *--------------------------------------------------------*/
 
 import {
-  TextDocument,
   Position,
   Range,
   TextEdit,
@@ -33,7 +32,7 @@ export class Edit {
   }
 
   // Creates TextEdit for current Edit
-  public apply(): TextEdit {
+  public apply(): TextEdit | undefined {
     switch (this.action) {
       case EditTypes.EDIT_INSERT:
         return TextEdit.insert(this.start, this.text);
@@ -103,7 +102,7 @@ export interface FilePatch {
 function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
   const filePatches: FilePatch[] = [];
   diffOutput.forEach((uniDiff: jsDiff.IUniDiff) => {
-    let edit: Edit = null;
+    let edit: Edit | null = null;
     const edits: Edit[] = [];
     uniDiff.hunks.forEach((hunk: jsDiff.IHunk) => {
       let startLine = hunk.oldStart;
@@ -177,7 +176,7 @@ function getEdits(fileName: string, oldStr: string, newStr: string): FilePatch {
 export function getTextEdits(oldStr: string, newStr: string): TextEdit[] {
   const filename = "undefined";
   const filePatch = getEdits(filename, oldStr, newStr);
-  return filePatch.edits.map(edit => edit.apply());
+  return filePatch.edits.map(edit => edit.apply()).filter(notEmpty);
 }
 
 export function translateTextEdits(
@@ -194,4 +193,8 @@ export function translateRange(range: Range, offset: Position): Range {
   const start = range.start.translate(offset.line, offset.character);
   const end = range.end.translate(offset.line, offset.character);
   return new Range(start, end);
+}
+
+function notEmpty<TValue>(value: TValue | null | undefined): value is TValue {
+  return value !== null && value !== undefined;
 }
