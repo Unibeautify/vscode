@@ -1,5 +1,11 @@
 {
   "extends": [
     "config:base"
-  ]
+  ],
+  "devDependencies": {
+    "automerge": true,
+    "major": {
+      "automerge": false
+    }
+  }
 }
