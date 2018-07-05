@@ -139,7 +139,9 @@ export class EditProvider
                 vscode.window.showErrorMessage(
                   `We could not find your default config file: \n
                   ${defaultConfigFile} \n
-                  Please correct your path, create a config in your workspace or set the default to ‘null‘, otherwise the plugin will not work!`
+                  Please correct your path, create a config in your
+                  workspace or set the default to ‘null‘, otherwise
+                  the plugin will not work!`
                 );
                 throw error;
               });
