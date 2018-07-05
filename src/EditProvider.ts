@@ -6,7 +6,7 @@ import unibeautify, {
 } from "unibeautify";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
-import cosmiconfig, { ExplorerOptions } from "cosmiconfig";
+import cosmiconfig, { ExplorerOptions, CosmiconfigResult } from "cosmiconfig";
 
 export class EditProvider
   implements
@@ -113,32 +113,40 @@ export class EditProvider
   ): Promise<LanguageOptionValues> {
     try {
       const vscodeSettings = vscode.workspace.getConfiguration("unibeautify");
-      const defaultConfigPath = vscodeSettings.defaultConfig;
-      const cosmiOptions: ExplorerOptions = {};
+      const defaultConfigFile = vscodeSettings.defaultConfig;
+      const cosmiOptions: ExplorerOptions = {
+        stopDir: vscode.workspace.rootPath,
+      };
       const explorer = cosmiconfig("unibeautify", cosmiOptions);
       const defaultConfig: LanguageOptionValues = {};
 
-      if (defaultConfigPath) {
-        return explorer
-          .load(defaultConfigPath)
-          .then(returnResult)
-          .catch(error => {
-            vscode.window.showErrorMessage(
-              `We could not find your configuration file: ${defaultConfigPath}.` +
-                "Please correct your path, otherwise the plugin will not work!"
-            );
-            throw error;
-          });
-      }
+      return explorer
+        .search(searchStartPath)
+        .then((resultByPath: CosmiconfigResult) => {
+          if (resultByPath) {
+            return resultByPath.config;
+          }
 
-      return explorer.search(searchStartPath).then(returnResult);
+          // check fallback availability
+          if (defaultConfigFile) {
+            return explorer
+              .load(defaultConfigFile)
+              .then(
+                (resultByFile: CosmiconfigResult) =>
+                  resultByFile ? resultByFile.config : null
+              )
+              .catch(error => {
+                vscode.window.showErrorMessage(
+                  `We could not find your default config file: \n
+                  ${defaultConfigFile} \n
+                  Please correct your path, create a config in your workspace or set the default to ‘null‘, otherwise the plugin will not work!`
+                );
+                throw error;
+              });
+          }
 
-      function returnResult(result: any) {
-        if (!result) {
           return defaultConfig;
-        }
-        return result.config;
-      }
+        });
     } catch (error) {
       return Promise.reject(error);
     }
