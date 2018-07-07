@@ -4,6 +4,7 @@ import unibeautify, {
   BeautifyData,
   Language,
 } from "unibeautify";
+import { UnibeautifyVSCodeSettings } from "./index";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
 import cosmiconfig, { ExplorerOptions, CosmiconfigResult } from "cosmiconfig";
@@ -112,8 +113,10 @@ export class EditProvider
     searchStartPath: string | undefined = vscode.workspace.rootPath
   ): Promise<LanguageOptionValues> {
     try {
-      const vscodeSettings = vscode.workspace.getConfiguration("unibeautify");
-      const defaultConfigFile = vscodeSettings.defaultConfig;
+      const vscodeSettings: UnibeautifyVSCodeSettings = <any>vscode.workspace.getConfiguration(
+        "unibeautify"
+      );
+      const defaultConfigFile = (vscodeSettings as any).defaultConfig;
       const cosmiOptions: ExplorerOptions = {
         stopDir: vscode.workspace.rootPath,
       };
