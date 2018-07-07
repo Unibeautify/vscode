@@ -14,6 +14,5 @@
     "files.associations": {
         "*.myphp": "php"
     },
-    "unibeautify.defaultConfig": null,
-    "unibeautify.extendConfig": true
+    "unibeautify.defaultConfig": null
 }
