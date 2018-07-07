@@ -114,7 +114,7 @@
                 "unibeautify.defaultConfig": {
                     "type": "string",
                     "default": null,
-                    "description": "Absolute path to your .unibeautifyrc file outside the workspace folder. This will override the workspace's own .unibeautifyrc config file."
+                    "description": "Absolute path to a fallback configuration file, when Unibeautify doesn‘t find a .unibeautifyrc in your workspace directory."
                 }
             }
         }
