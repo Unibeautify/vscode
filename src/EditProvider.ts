@@ -116,7 +116,7 @@ export class EditProvider
       const vscodeSettings: UnibeautifyVSCodeSettings = <any>vscode.workspace.getConfiguration(
         "unibeautify"
       );
-      const defaultConfigFile = (vscodeSettings as any).defaultConfig;
+      const defaultConfigFile = vscodeSettings.defaultConfig;
       const cosmiOptions: ExplorerOptions = {
         stopDir: vscode.workspace.rootPath,
       };
