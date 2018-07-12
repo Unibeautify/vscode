@@ -4,9 +4,10 @@ import unibeautify, {
   BeautifyData,
   Language,
 } from "unibeautify";
+import { UnibeautifyVSCodeSettings } from "./index";
 import { getTextEdits, translateTextEdits } from "./diffUtils";
 import { extname } from "path";
-import cosmiconfig from "cosmiconfig";
+import cosmiconfig, { ExplorerOptions, CosmiconfigResult } from "cosmiconfig";
 
 export class EditProvider
   implements
@@ -64,22 +65,24 @@ export class EditProvider
     const fileExtension = this.fileExtensionForDocument(document);
     const filePath = document.fileName;
     const projectPath = vscode.workspace.rootPath;
-    return EditProvider.beautifyOptions(filePath).then(beautifyOptions => {
-      const languageName = this.languageNameForDocument(document);
-      const beautifyData: BeautifyData = {
-        fileExtension,
-        filePath,
-        languageName,
-        options: beautifyOptions,
-        projectPath,
-        text,
-      };
-      console.log("beautifyData", beautifyData);
-      return unibeautify.beautify(beautifyData).catch(error => {
-        console.error(error);
-        return Promise.reject(error);
-      });
-    });
+    return EditProvider.beautifyOptions(filePath || projectPath).then(
+      beautifyOptions => {
+        const languageName = this.languageNameForDocument(document);
+        const beautifyData: BeautifyData = {
+          fileExtension,
+          filePath,
+          languageName,
+          options: beautifyOptions,
+          projectPath,
+          text,
+        };
+        console.log("beautifyData", beautifyData);
+        return unibeautify.beautify(beautifyData).catch(error => {
+          console.error(error);
+          return Promise.reject(error);
+        });
+      }
+    );
   }
 
   private languageNameForDocument(
@@ -96,7 +99,9 @@ export class EditProvider
     return unibeautify.findLanguages({ vscodeLanguage: document.languageId });
   }
 
-  private fileExtensionForDocument(document: vscode.TextDocument): string {
+  private fileExtensionForDocument(
+    document: vscode.TextDocument
+  ): string | undefined {
     const { fileName } = document;
     if (fileName) {
       return extname(fileName).slice(1);
@@ -105,14 +110,48 @@ export class EditProvider
   }
 
   public static beautifyOptions(
-    filePath: string = vscode.workspace.rootPath
+    searchStartPath: string | undefined = vscode.workspace.rootPath
   ): Promise<LanguageOptionValues> {
     try {
-      const explorer = cosmiconfig("unibeautify", {});
+      const vscodeSettings: UnibeautifyVSCodeSettings = <any>vscode.workspace.getConfiguration(
+        "unibeautify"
+      );
+      const defaultConfigFile = vscodeSettings.defaultConfig;
+      const cosmiOptions: ExplorerOptions = {
+        stopDir: vscode.workspace.rootPath,
+      };
+      const explorer = cosmiconfig("unibeautify", cosmiOptions);
       const defaultConfig: LanguageOptionValues = {};
+
       return explorer
-        .search(filePath)
-        .then(result => (result ? result.config : defaultConfig));
+        .search(searchStartPath)
+        .then((resultByPath: CosmiconfigResult) => {
+          if (resultByPath) {
+            return resultByPath.config;
+          }
+
+          // check fallback availability
+          if (defaultConfigFile) {
+            return explorer
+              .load(defaultConfigFile)
+              .then(
+                (resultByFile: CosmiconfigResult) =>
+                  resultByFile ? resultByFile.config : null
+              )
+              .catch(error => {
+                vscode.window.showErrorMessage(
+                  `We could not find your default config file: \n
+                  ${defaultConfigFile} \n
+                  Please correct your path, create a config in your
+                  workspace or set the default to ‘null‘, otherwise
+                  the plugin will not work!`
+                );
+                throw error;
+              });
+          }
+
+          return defaultConfig;
+        });
     } catch (error) {
       return Promise.reject(error);
     }

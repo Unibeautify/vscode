@@ -34,8 +34,11 @@ export class Editor {
   }
 
   get fullRange(): vscode.Range {
-    return this.document.validateRange(
-      new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)
-    );
+    if (this.document) {
+      return this.document.validateRange(
+        new vscode.Range(0, 0, Number.MAX_VALUE, Number.MAX_VALUE)
+      );
+    }
+    return new vscode.Range(0, 0, 0, 0);
   }
 }
