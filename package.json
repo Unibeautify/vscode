@@ -114,7 +114,7 @@
                 "unibeautify.defaultConfig": {
                     "type": "string",
                     "default": null,
-                    "description": "Absolute path to a fallback configuration file, when Unibeautify doesn‘t find a .unibeautifyrc in your workspace directory."
+                    "description": "The absolute path to a fallback configuration file, when Unibeautify doesn‘t find a .unibeautifyrc in your workspace directory."
                 }
             }
         }

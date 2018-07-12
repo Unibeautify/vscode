@@ -65,6 +65,6 @@ function vscodeSettings(): UnibeautifyVSCodeSettings {
 }
 
 export interface UnibeautifyVSCodeSettings {
-  defaultConfig: string;
+  defaultConfig: string | null;
   enabled: boolean;
 }
