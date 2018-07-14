@@ -70,7 +70,7 @@
         "@types/cosmiconfig": "5.0.3",
         "@types/diff": "3.5.1",
         "@types/jest": "23.1.6",
-        "@types/lodash": "4.14.111",
+        "@types/lodash": "4.14.112",
         "@types/node": "9.6.23",
         "@types/source-map-support": "0.4.1",
         "cross-env": "5.2.0",
