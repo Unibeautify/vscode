@@ -82,7 +82,7 @@
         "tslint": "5.11.0",
         "tslint-clean-code": "0.2.7",
         "tslint-microsoft-contrib": "5.1.0",
-        "typescript": "2.9.2",
+        "typescript": "3.0.1",
         "vscode": "1.1.18"
     },
     "dependencies": {
