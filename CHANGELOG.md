@@ -1,3 +1,7 @@
+### 0.6.1 (08/09/2018)
+
+* Fix issue where it would not recognize the correct language [#102](https://github.com/Unibeautify/vscode/issues/102)
+
 ### 0.6.0 (08/02/2018)
 
 * Fix issue where extension did not recognize ColdFusion files [#94](https://github.com/Unibeautify/vscode/issues/94)
