@@ -83,7 +83,7 @@
         "tslint-clean-code": "0.2.7",
         "tslint-microsoft-contrib": "5.2.0",
         "typescript": "3.0.1",
-        "vscode": "1.1.18"
+        "vscode": "1.1.21"
     },
     "dependencies": {
         "@unibeautify/beautifier-clang-format": "^0.2.0",
