@@ -104,7 +104,7 @@ export class EditProvider
   ): string | undefined {
     const { fileName } = document;
     if (fileName) {
-      return extname(fileName).slice(1);
+      return `.${extname(fileName).slice(1)}`;
     }
     return undefined;
   }
