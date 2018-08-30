@@ -62,6 +62,16 @@ JavaScript: # Enable language
 
 Then look at https://unibeautify.com/docs/beautifier-prettier.html and https://unibeautify.com/docs/options-for-languages.html for more supported options.
 
+#### :pushpin: Default configuration
+
+We provide the option to set a path to a default configuration file, so whenever a project of yours has no, e.g. `.unibeautifyrc.yml`, the default configuration will be used as a fallback.
+
+To enable this, just add this to your VSCode Settings:
+
+```json
+"unibeautify.defaultConfig": "/path/to/your/.unibeautifyrc.yml",
+```
+
 ### :zap: Keyboard Shortcut
 
 From [Stack Overflow](https://stackoverflow.com/a/29973358/2578205):
@@ -83,7 +93,7 @@ Open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userint
 
 <details><summary>How do I add language support for a non-standard file extension?</summary>
 
-This section is for you if you are seeing the following error message after running `Format Document` or similar:
+This section is for you if you are seeing the following error message after running <kbd>Format Document</kbd> or similar:
 
 ![There is no document formatter for 'plaintext'-files installed.](https://user-images.githubusercontent.com/1885333/41636879-5665cf80-7427-11e8-9b8e-9488f02d4a62.png)
 
@@ -127,15 +137,15 @@ JavaScript: # Enable TypeScript
 | Beautified CSS files | ![There is no document formatter for 'css'-files installed.](https://user-images.githubusercontent.com/1885333/41637148-d28b5764-7428-11e8-9763-007f44fe6787.png) |
 </details>
 
-<details><summary>What can I do when a beautifier takes to much time formatting</summary>
+<details><summary>What can I do when a beautifier takes to much time formatting?</summary>
 
-This section is for you if you are seeing the following error message in the developer console after running Format Document or similar:
+This section is for you if you are seeing the following error message in the developer console after running <kbd>Format Document</kbd> or similar:
 
 ![Timeout message](docs/screenshot-timeout-message.png)
 
-Sometimes beautifiers are taking much time formatting your file, this can be caused by big files or many settings you have set for your beautifier, then you need to increase the VSCode __editor.formatOnSaveTimeout__ option to give the beautifier more time formatting your file. 
+Sometimes beautifiers are taking much time formatting your file, this can be caused by big files or many settings you have set for your beautifier, then you need to increase the VSCode **editor.formatOnSaveTimeout** option to give the beautifier more time formatting your file. 
 
-Just add this entry in your VSCode settings:
+Just add this entry in your [VSCode settings](https://code.visualstudio.com/docs/getstarted/settings#_default-settings):
 
 ```json
 "editor.formatOnSaveTimeout": 2000
