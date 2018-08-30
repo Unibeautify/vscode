@@ -66,7 +66,7 @@ Then look at https://unibeautify.com/docs/beautifier-prettier.html and https://u
 
 We provide the option to set a path to a default configuration file, so whenever a project of yours has no, e.g. `.unibeautifyrc.yml`, the default configuration will be used as a fallback.
 
-To enable this, just add this to your VSCode Settings:
+To enable this, just add this to your [VSCode settings](https://code.visualstudio.com/docs/getstarted/settings#_default-settings):
 
 ```json
 "unibeautify.defaultConfig": "/path/to/your/.unibeautifyrc.yml",
