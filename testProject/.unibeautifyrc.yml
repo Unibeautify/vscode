@@ -19,3 +19,6 @@ PHP:
   "PHP-CS-Fixer":
     prefer_beautifier_config: true
 CSS: false
+SQL:
+  beautifiers: ["sqlformat"]
+  keyword_case: "uppercase"
