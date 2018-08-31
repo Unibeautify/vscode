@@ -29,6 +29,7 @@ See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for lis
 | 5 | PHP_CodeSniffer | https://unibeautify.com/docs/beautifier-php_codesniffer.html |
 | 6 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
 | 7 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
+| 8 | sqlformat | https://unibeautify.com/docs/beautifier-sqlformat.html |
 <!--END:SUPPORT-TABLE-->
 
 ## :art: Usage
