@@ -4,6 +4,7 @@
   ],
   "devDependencies": {
     "automerge": true,
+    "automergeType": "branch",
     "major": {
       "automerge": false
     }
