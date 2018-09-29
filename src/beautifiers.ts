@@ -7,6 +7,7 @@ import phpCsFixer from "@unibeautify/beautifier-php-cs-fixer";
 import clangFormat from "@unibeautify/beautifier-clang-format";
 import phpCodesniffer from "@unibeautify/beautifier-php-codesniffer";
 import sqlFormat from "@unibeautify/beautifier-sqlformat";
+import csscomb from "@unibeautify/beautifier-csscomb";
 
 export const beautifiers: Beautifier[] = <any[]>[
   prettier,
@@ -17,4 +18,5 @@ export const beautifiers: Beautifier[] = <any[]>[
   clangFormat,
   phpCodesniffer,
   sqlFormat,
+  csscomb,
 ];

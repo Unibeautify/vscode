@@ -87,6 +87,7 @@
     },
     "dependencies": {
         "@unibeautify/beautifier-clang-format": "^0.2.0",
+        "@unibeautify/beautifier-csscomb": "^0.1.0",
         "@unibeautify/beautifier-eslint": "^0.5.0",
         "@unibeautify/beautifier-js-beautify": "^0.3.2",
         "@unibeautify/beautifier-php-codesniffer": "^0.1.1",
