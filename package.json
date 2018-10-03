@@ -92,7 +92,7 @@
         "@unibeautify/beautifier-php-codesniffer": "^0.1.1",
         "@unibeautify/beautifier-php-cs-fixer": "^0.3.0",
         "@unibeautify/beautifier-prettier": "^0.8.0",
-        "@unibeautify/beautifier-prettydiff": "^0.5.3",
+        "@unibeautify/beautifier-prettydiff": "^0.6.0",
         "@unibeautify/beautifier-sqlformat": "^0.0.1",
         "cosmiconfig": "^5.0.5",
         "diff": "^3.3.0",
