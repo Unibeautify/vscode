@@ -113,8 +113,8 @@ export class EditProvider
     searchStartPath: string | undefined = vscode.workspace.rootPath
   ): Promise<LanguageOptionValues> {
     try {
-      const vscodeSettings: UnibeautifyVSCodeSettings = <any>vscode.workspace.getConfiguration(
-        "unibeautify"
+      const vscodeSettings: UnibeautifyVSCodeSettings = <any>(
+        vscode.workspace.getConfiguration("unibeautify")
       );
       const defaultConfigFile = vscodeSettings.defaultConfig;
       const cosmiOptions: ExplorerOptions = {
