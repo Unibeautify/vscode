@@ -71,7 +71,7 @@
         "@types/diff": "3.5.1",
         "@types/jest": "23.3.5",
         "@types/lodash": "4.14.117",
-        "@types/node": "10.11.7",
+        "@types/node": "10.12.0",
         "@types/source-map-support": "0.4.1",
         "cross-env": "5.2.0",
         "jest": "23.6.0",
