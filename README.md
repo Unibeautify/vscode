@@ -22,14 +22,15 @@ See https://github.com/Unibeautify/vscode/blob/master/src/beautifiers.ts for lis
 <!--START:SUPPORT-TABLE-->
 | # | Beautifier | Documentation |
 | --- | --- | --- |
-| 1 | ClangFormat | https://unibeautify.com/docs/beautifier-clangformat.html |
-| 2 | ESLint | https://unibeautify.com/docs/beautifier-eslint.html |
-| 3 | JS-Beautify | https://unibeautify.com/docs/beautifier-js-beautify.html |
-| 4 | PHP-CS-Fixer | https://unibeautify.com/docs/beautifier-php-cs-fixer.html |
-| 5 | PHP_CodeSniffer | https://unibeautify.com/docs/beautifier-php_codesniffer.html |
-| 6 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
-| 7 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
-| 8 | sqlformat | https://unibeautify.com/docs/beautifier-sqlformat.html |
+| 1 | CSScomb | https://unibeautify.com/docs/beautifier-csscomb.html |
+| 2 | ClangFormat | https://unibeautify.com/docs/beautifier-clangformat.html |
+| 3 | ESLint | https://unibeautify.com/docs/beautifier-eslint.html |
+| 4 | JS-Beautify | https://unibeautify.com/docs/beautifier-js-beautify.html |
+| 5 | PHP-CS-Fixer | https://unibeautify.com/docs/beautifier-php-cs-fixer.html |
+| 6 | PHP_CodeSniffer | https://unibeautify.com/docs/beautifier-php_codesniffer.html |
+| 7 | Prettier | https://unibeautify.com/docs/beautifier-prettier.html |
+| 8 | Pretty Diff | https://unibeautify.com/docs/beautifier-pretty-diff.html |
+| 9 | sqlformat | https://unibeautify.com/docs/beautifier-sqlformat.html |
 <!--END:SUPPORT-TABLE-->
 
 ## :art: Usage
