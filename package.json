@@ -69,9 +69,9 @@
     "devDependencies": {
         "@types/cosmiconfig": "5.0.3",
         "@types/diff": "3.5.1",
-        "@types/jest": "23.3.7",
+        "@types/jest": "23.3.8",
         "@types/lodash": "4.14.117",
-        "@types/node": "10.12.0",
+        "@types/node": "10.12.1",
         "@types/source-map-support": "0.4.1",
         "cross-env": "5.2.0",
         "jest": "23.6.0",
@@ -80,9 +80,9 @@
         "source-map-support": "0.5.9",
         "ts-jest": "23.10.4",
         "tslint": "5.11.0",
-        "tslint-clean-code": "0.2.7",
+        "tslint-clean-code": "0.2.8",
         "tslint-microsoft-contrib": "5.2.1",
-        "typescript": "3.1.3",
+        "typescript": "3.1.4",
         "vscode": "1.1.21"
     },
     "dependencies": {
