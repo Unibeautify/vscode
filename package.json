@@ -87,6 +87,7 @@
     },
     "dependencies": {
         "@unibeautify/beautifier-clang-format": "^0.2.0",
+        "@unibeautify/beautifier-csscomb": "^0.1.0",
         "@unibeautify/beautifier-eslint": "^0.6.0",
         "@unibeautify/beautifier-js-beautify": "^0.4.0",
         "@unibeautify/beautifier-php-codesniffer": "^0.1.1",
@@ -95,6 +96,7 @@
         "@unibeautify/beautifier-prettydiff": "^0.6.0",
         "@unibeautify/beautifier-sqlformat": "^0.0.1",
         "cosmiconfig": "^5.0.6",
+        "csscomb": "^4.2.0",
         "diff": "^3.3.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.7.5",
