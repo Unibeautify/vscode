@@ -99,12 +99,12 @@ export interface FilePatch {
  *
  * @returns Array of FilePatch objects, one for each file
  */
-function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
+function parseUniDiffs(diffOutput: jsDiff.ParsedDiff[]): FilePatch[] {
   const filePatches: FilePatch[] = [];
-  diffOutput.forEach((uniDiff: jsDiff.IUniDiff) => {
+  diffOutput.forEach((uniDiff: jsDiff.ParsedDiff) => {
     let edit: Edit | null = null;
     const edits: Edit[] = [];
-    uniDiff.hunks.forEach((hunk: jsDiff.IHunk) => {
+    uniDiff.hunks.forEach((hunk: jsDiff.Hunk) => {
       let startLine = hunk.oldStart;
       hunk.lines.forEach(line => {
         switch (line.substr(0, 1)) {
@@ -143,7 +143,7 @@ function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
       }
     });
 
-    const fileName = uniDiff.oldFileName;
+    const fileName = uniDiff.oldFileName || "";
     filePatches.push({ fileName, edits });
   });
 
@@ -161,7 +161,7 @@ function parseUniDiffs(diffOutput: jsDiff.IUniDiff[]): FilePatch[] {
  */
 function getEdits(fileName: string, oldStr: string, newStr: string): FilePatch {
   const isWindows = process.platform === "win32";
-  const unifiedDiffs: jsDiff.IUniDiff = jsDiff.structuredPatch(
+  const unifiedDiffs: jsDiff.ParsedDiff = jsDiff.structuredPatch(
     fileName,
     fileName,
     isWindows ? oldStr.split("\r\n").join("\n") : oldStr,
