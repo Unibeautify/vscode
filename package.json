@@ -95,6 +95,7 @@
         "@unibeautify/beautifier-prettier": "^0.9.0",
         "@unibeautify/beautifier-prettydiff": "^0.6.0",
         "@unibeautify/beautifier-sqlformat": "^0.0.1",
+		"@unibeautify/beautifier-tslint": "0.1.0",
         "cosmiconfig": "^5.0.6",
         "csscomb": "^4.2.0",
         "diff": "^4.0.0",
