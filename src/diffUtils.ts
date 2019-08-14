@@ -3,15 +3,17 @@
  * Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------*/
 
+import * as jsDiff from "diff";
+import { Hunk } from "diff";
+
 import {
   Position,
   Range,
   TextEdit,
+  TextEditorEdit,
   Uri,
   WorkspaceEdit,
-  TextEditorEdit,
 } from "vscode";
-import * as jsDiff from "diff";
 
 export enum EditTypes {
   EDIT_DELETE,
@@ -88,14 +90,14 @@ export class Edit {
 }
 
 export interface FilePatch {
-  fileName: string;
+  fileName?: string;
   edits: Edit[];
 }
 
 /**
  * Uses diff module to parse given array of IUniDiff objects and returns edits for files
  *
- * @param diffOutput jsDiff.IUniDiff[]
+ * @param diffOutput ParsedDiff[]
  *
  * @returns Array of FilePatch objects, one for each file
  */
@@ -104,9 +106,9 @@ function parseUniDiffs(diffOutput: jsDiff.ParsedDiff[]): FilePatch[] {
   diffOutput.forEach((uniDiff: jsDiff.ParsedDiff) => {
     let edit: Edit | null = null;
     const edits: Edit[] = [];
-    uniDiff.hunks.forEach((hunk: jsDiff.Hunk) => {
+    uniDiff.hunks.forEach((hunk: Hunk) => {
       let startLine = hunk.oldStart;
-      hunk.lines.forEach(line => {
+      hunk.lines.forEach((line: any) => {
         switch (line.substr(0, 1)) {
           case "-":
             if (edit == null) {
@@ -143,7 +145,7 @@ function parseUniDiffs(diffOutput: jsDiff.ParsedDiff[]): FilePatch[] {
       }
     });
 
-    const fileName = uniDiff.oldFileName || "";
+    const fileName = uniDiff.oldFileName;
     filePatches.push({ fileName, edits });
   });
 
