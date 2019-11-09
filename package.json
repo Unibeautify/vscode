@@ -77,7 +77,7 @@
         "jest": "24.9.0",
         "jest-environment-node": "24.9.0",
         "rimraf": "3.0.0",
-        "source-map-support": "0.5.13",
+        "source-map-support": "0.5.16",
         "ts-jest": "24.1.0",
         "tslint": "5.18.0",
         "tslint-clean-code": "0.2.9",
