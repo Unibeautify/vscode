@@ -100,7 +100,7 @@
         "diff": "^4.0.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.10.2",
-        "prettier": "^1.18.2",
+        "prettier": "^2.0.0",
         "prettydiff2": "^2.2.8",
         "unibeautify": "^0.17.0"
     },
