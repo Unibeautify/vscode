@@ -6,10 +6,15 @@ import eslint from "@unibeautify/beautifier-eslint";
 import phpCsFixer from "@unibeautify/beautifier-php-cs-fixer";
 import clangFormat from "@unibeautify/beautifier-clang-format";
 import phpCodesniffer from "@unibeautify/beautifier-php-codesniffer";
+import black from "@unibeautify/beautifier-black";
+import gofmt from "@unibeautify/beautifier-gofmt";
 import sqlFormat from "@unibeautify/beautifier-sqlformat";
+import yapf from "@unibeautify/beautifier-yapf";
+import tslint from "@unibeautify/beautifier-tslint";
 import csscomb from "@unibeautify/beautifier-csscomb";
+import stylelint from "@unibeautify/beautifier-stylelint";
 
-export const beautifiers: Beautifier[] = <any[]>[
+export const beautifiers: Beautifier[] = [
   prettier,
   jsBeautify,
   prettyDiff,
@@ -17,6 +22,11 @@ export const beautifiers: Beautifier[] = <any[]>[
   phpCsFixer,
   clangFormat,
   phpCodesniffer,
+  black,
+  gofmt,
   sqlFormat,
+  yapf,
+  tslint,
   csscomb,
+  stylelint,
 ];
