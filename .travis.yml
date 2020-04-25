@@ -8,7 +8,7 @@ services:
 os:
   - linux
   - osx
-  - windows
+  # - windows # Enable once https://github.com/microsoft/vscode/issues/77499 is fixed
 addons:
   apt:
     packages:
@@ -25,7 +25,7 @@ install:
 
 script:
   - npm run lint
-  - npm test --silent
+  - npm test
   - npm list --production --parseable --depth=99999 # Check if can publish VSCode extension
   - npm run vscode:prepublish
   - git status
