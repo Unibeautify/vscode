@@ -100,7 +100,7 @@
         "@unibeautify/beautifier-stylelint": "0.0.1",
         "@unibeautify/beautifier-tslint": "^0.1.0",
         "@unibeautify/beautifier-yapf": "^0.3.0",
-        "cosmiconfig": "^5.2.1",
+        "cosmiconfig": "^6.0.0",
         "csscomb": "^4.3.0",
         "diff": "^4.0.0",
         "eslint": "^4.19.1",
