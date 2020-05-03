@@ -1,7 +1,7 @@
 {
     "name": "unibeautify-vscode",
     "displayName": "Unibeautify - Universal Formatter",
-    "version": "0.8.1",
+    "version": "0.8.2",
     "description": "Unibeautify (Universal Code Formatter) for Visual Studio Code",
     "preview": true,
     "main": "index.js",
