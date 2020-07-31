@@ -106,7 +106,7 @@
         "prettier": "^1.18.2",
         "prettydiff2": "^2.2.8",
         "stylelint": "^9.7.1",
-        "tslint": "^5.20.1",
+        "tslint": "^6.0.0",
         "typescript": "3.8.3",
         "unibeautify": "^0.17.0"
     },
