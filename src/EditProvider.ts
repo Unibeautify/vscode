@@ -134,9 +134,8 @@ export class EditProvider
           if (defaultConfigFile) {
             return explorer
               .load(defaultConfigFile)
-              .then(
-                (resultByFile: CosmiconfigResult) =>
-                  resultByFile ? resultByFile.config : null
+              .then((resultByFile: CosmiconfigResult) =>
+                resultByFile ? resultByFile.config : null
               )
               .catch(error => {
                 vscode.window.showErrorMessage(
