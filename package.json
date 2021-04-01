@@ -68,7 +68,7 @@
     },
     "devDependencies": {
         "@types/cosmiconfig": "5.0.3",
-        "@types/diff": "4.0.2",
+        "@types/diff": "5.0.0",
         "@types/jest": "24.9.1",
         "@types/lodash": "4.14.168",
         "@types/node": "12.20.7",
@@ -100,7 +100,7 @@
         "@unibeautify/beautifier-yapf": "^0.3.0",
         "cosmiconfig": "^5.2.1",
         "csscomb": "^4.3.0",
-        "diff": "^4.0.0",
+        "diff": "^5.0.0",
         "eslint": "^4.19.1",
         "js-beautify": "^1.10.2",
         "prettier": "^1.18.2",
