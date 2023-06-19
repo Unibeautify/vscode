@@ -73,7 +73,7 @@
         "@types/lodash": "4.14.192",
         "@types/node": "12.20.55",
         "@types/source-map-support": "0.5.6",
-        "cross-env": "6.0.3",
+        "cross-env": "7.0.3",
         "jest": "24.9.0",
         "jest-environment-node": "24.9.0",
         "rimraf": "3.0.2",
