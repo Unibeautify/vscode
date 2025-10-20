@@ -81,7 +81,7 @@
         "ts-jest": "24.3.0",
         "tslint-clean-code": "0.2.10",
         "tslint-microsoft-contrib": "6.2.0",
-        "vscode": "1.1.37"
+        "vscode": "1.999.0"
     },
     "dependencies": {
         "@unibeautify/beautifier-black": "^0.1.1",
