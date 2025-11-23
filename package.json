@@ -67,7 +67,7 @@
         "vscode": "^1.6.0"
     },
     "devDependencies": {
-        "@types/cosmiconfig": "5.0.3",
+        "@types/cosmiconfig": "6.0.3",
         "@types/diff": "4.0.2",
         "@types/jest": "24.9.1",
         "@types/lodash": "4.17.21",
